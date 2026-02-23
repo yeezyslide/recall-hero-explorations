@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recall — Hero Explorations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Manrope', sans-serif; scroll-behavior: smooth; }
+    body { background: #EDEFF7; }
+
+    /* ========== SECTION LABELS ========== */
+    .section-label {
+      text-align: center;
+      padding: 48px 0 0;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6E7180;
+    }
+    .section-label span {
+      display: inline-block;
+      background: #D3D6E0;
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+    .section-divider {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+    .section-divider hr {
+      border: none;
+      border-top: 1px solid #D3D6E0;
+      margin-top: 64px;
+    }
+
+    /* ========== SHARED HERO STYLES ========== */
+    .hero-section {
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 64px;
+    }
+
+    /* ========== NAV ========== */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .nav-logo svg { height: 28px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 36px; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .nav-links a:hover { opacity: 0.7; }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Light nav */
+    .light .nav-links a { color: #40424D; }
+    .light .nav-cta {
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+      color: #fff;
+    }
+
+    /* Dark nav */
+    .dark .nav-links a { color: #BCBFCC; }
+    .dark .nav-cta {
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+      color: #fff;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    .hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-headline {
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: 400;
+      max-width: 540px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    /* Light buttons */
+    .light .btn-secondary {
+      border: 1.5px solid #D3D6E0;
+      color: #40424D;
+    }
+
+    /* Dark buttons */
+    .dark .btn-secondary {
+      border: 1.5px solid #40424D;
+      color: #BCBFCC;
+    }
+
+    /* ========== SOCIAL PROOF ========== */
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .social-proof-text {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .logo-placeholders {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .logo-placeholder {
+      width: 80px;
+      height: 28px;
+      border-radius: 6px;
+    }
+    .light .social-proof-text { color: #9DA2B3; }
+    .light .logo-placeholder { background: #EDEFF7; }
+    .dark .social-proof-text { color: #6E7180; }
+    .dark .logo-placeholder { background: #1E1E24; }
+
+    /* ========== LIGHT & DARK BASE ========== */
+    .light { background: #FFFFFF; }
+    .dark { background: #050B16; }
+    .light .hero-label { color: #4874FF; }
+    .dark .hero-label { color: #74CEFF; }
+    .light .hero-headline { color: #050B16; }
+    .dark .hero-headline { color: #FFFFFF; }
+    .light .hero-sub { color: #6E7180; }
+    .dark .hero-sub { color: #9DA2B3; }
+
+    /* ====================================================
+       OPTION A — SPLIT LAYOUT + STYLIZED UI MOCKUP
+       ==================================================== */
+    .option-a .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 64px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      min-height: calc(100vh - 76px);
+    }
+    .option-a .hero-content {
+      flex: 1;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .option-a .hero-headline { font-size: 52px; }
+    .option-a .hero-visual {
+      flex: 1;
+      max-width: 560px;
+      position: relative;
+    }
+
+    /* UI Mockup */
+    .ui-mockup {
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .light .ui-mockup {
+      background: #FFFFFF;
+      border: 1px solid #EDEFF7;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .dark .ui-mockup {
+      background: #0D1424;
+      border: 1px solid rgba(72,116,255,0.15);
+      box-shadow: 0 4px 48px rgba(72,116,255,0.1), 0 0 0 1px rgba(72,116,255,0.05);
+    }
+    .ui-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+    }
+    .light .ui-titlebar { border-bottom: 1px solid #EDEFF7; }
+    .dark .ui-titlebar { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ui-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .light .ui-dot { background: #EDEFF7; }
+    .dark .ui-dot { background: #1E1E24; }
+    .ui-titlebar-text {
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .light .ui-titlebar-text { color: #9DA2B3; }
+    .dark .ui-titlebar-text { color: #6E7180; }
+    .ui-body { padding: 24px; }
+
+    .ui-query {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .ui-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .light .ui-avatar { background: #EDEFF7; }
+    .dark .ui-avatar { background: #1E1E24; }
+    .ui-query-text {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+    .light .ui-query-text {
+      background: #F7F8FC;
+      color: #40424D;
+    }
+    .dark .ui-query-text {
+      background: #141C2E;
+      color: #D3D6E0;
+    }
+
+    .ui-sources {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-left: 40px;
+    }
+    .ui-source-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .light .ui-source-badge {
+      background: #EDEFF7;
+      color: #6E7180;
+    }
+    .dark .ui-source-badge {
+      background: rgba(116,206,255,0.08);
+      color: #74CEFF;
+    }
+    .ui-source-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .ui-response {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .ui-response-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ui-response-avatar svg { width: 16px; height: 16px; }
+    .ui-response-text {
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+    .light .ui-response-text { color: #40424D; }
+    .dark .ui-response-text { color: #BCBFCC; }
+
+    /* ====================================================
+       OPTION B — CENTERED STACKED + ABSTRACT NODES
+       ==================================================== */
+    .option-b .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+      padding-bottom: 48px;
+    }
+    .option-b .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      max-width: 720px;
+    }
+    .option-b .hero-headline { font-size: 56px; }
+    .option-b .hero-sub { max-width: 600px; }
+    .option-b .hero-ctas { justify-content: center; }
+    .option-b .social-proof { justify-content: center; }
+    .option-b .hero-visual {
+      width: 100%;
+      max-width: 900px;
+      margin-top: 64px;
+    }
+
+    /* Node graph */
+    .node-graph {
+      width: 100%;
+      height: 380px;
+      position: relative;
+    }
+    .node-graph svg { width: 100%; height: 100%; }
+
+    /* ====================================================
+       OPTION C — ASYMMETRIC EDITORIAL + FLOATING CARDS
+       ==================================================== */
+    .option-c .hero-inner {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .option-c .hero-top {
+      max-width: 960px;
+      margin-bottom: 24px;
+    }
+    .option-c .hero-headline { font-size: 60px; }
+    .option-c .hero-bottom {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      margin-top: 32px;
+    }
+    .option-c .hero-content-left {
+      flex: 0 0 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .option-c .hero-visual-right {
+      flex: 1;
+      position: relative;
+      min-height: 420px;
+    }
+
+    /* Floating cards */
+    .float-card {
+      position: absolute;
+      border-radius: 14px;
+      padding: 20px 24px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .light .float-card {
+      background: #FFFFFF;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+      color: #40424D;
+    }
+    .dark .float-card {
+      background: #0D1424;
+      border: 1px solid rgba(72,116,255,0.12);
+      box-shadow: 0 2px 32px rgba(72,116,255,0.06);
+      color: #BCBFCC;
+    }
+
+    .float-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .light .float-card-title { color: #9DA2B3; }
+    .dark .float-card-title { color: #6E7180; }
+
+    .card-memory { top: 0; left: 0; width: 260px; }
+    .card-models { top: 20px; right: 0; width: 240px; }
+    .card-connectors { bottom: 40px; left: 40px; width: 280px; }
+    .card-security { bottom: 0; right: 20px; width: 220px; }
+
+    .memory-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .memory-layer {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .light .memory-layer { background: #F7F8FC; color: #40424D; }
+    .dark .memory-layer { background: #141C2E; color: #D3D6E0; }
+    .memory-layer-icon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+    }
+
+    .model-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .model-badge {
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .light .model-badge { background: #EDEFF7; color: #6E7180; }
+    .dark .model-badge { background: #1E1E24; color: #9DA2B3; }
+
+    .connector-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .connector-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .light .connector-chip { background: #EDEFF7; color: #6E7180; }
+    .dark .connector-chip { background: #1E1E24; color: #9DA2B3; }
+    .connector-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .security-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .security-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #74CEFF, #4874FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .security-check svg { width: 10px; height: 10px; }
+
+    /* ========== PAGE INDEX NAV ========== */
+    .page-index {
+      position: fixed;
+      top: 50%;
+      right: 24px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 100;
+    }
+    .page-index a {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #D3D6E0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .page-index a:hover {
+      background: #4874FF;
+      transform: scale(1.3);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Page Index Dots -->
+<nav class="page-index">
+  <a href="#a-light" title="Option A — Light"></a>
+  <a href="#a-dark" title="Option A — Dark"></a>
+  <a href="#b-light" title="Option B — Light"></a>
+  <a href="#b-dark" title="Option B — Dark"></a>
+  <a href="#c-light" title="Option C — Light"></a>
+  <a href="#c-dark" title="Option C — Dark"></a>
+</nav>
+
+<!-- ============================================================
+     OPTION A — LIGHT
+     ============================================================ -->
+<div class="section-label"><span>Option A — Light &nbsp;|&nbsp; Split Layout + Stylized UI Mockup</span></div>
+
+<section id="a-light" class="hero-section option-a light">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="al-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="al-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="al-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#al-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#al-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#al-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#050b16" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#050b16" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#050b16" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#050b16" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#050b16" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#050b16" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users. Recall makes everyone one.</h1>
+      <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Get a Demo</a>
+        <a href="#" class="btn-secondary">See How It Works</a>
+      </div>
+      <div class="social-proof">
+        <span class="social-proof-text">Trusted by enterprise teams</span>
+        <div class="logo-placeholders">
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ui-mockup">
+        <div class="ui-titlebar">
+          <div class="ui-dot"></div>
+          <div class="ui-dot"></div>
+          <div class="ui-dot"></div>
+          <span class="ui-titlebar-text">Recall</span>
+        </div>
+        <div class="ui-body">
+          <div class="ui-query">
+            <div class="ui-avatar"></div>
+            <div class="ui-query-text">What were the key takeaways from last quarter's pipeline review?</div>
+          </div>
+          <div class="ui-sources">
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#E01E5A"></span>Slack</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#00A1E0"></span>Salesforce</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#7B68EE"></span>Notion</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#FF6C37"></span>HubSpot</div>
+          </div>
+          <div class="ui-response">
+            <div class="ui-response-avatar">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ui-response-text">Based on the Q4 pipeline review discussed in #sales-leadership and synced with Salesforce data, three key themes emerged: <strong>Enterprise deal velocity improved 34%</strong> after implementing the new qualification framework, mid-market churn risk was flagged across 12 accounts, and the team agreed to prioritize vertical-specific messaging for Q1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OPTION A — DARK
+     ============================================================ -->
+<div class="section-divider"><hr></div>
+<div class="section-label"><span>Option A — Dark &nbsp;|&nbsp; Split Layout + Stylized UI Mockup</span></div>
+
+<section id="a-dark" class="hero-section option-a dark">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ad-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="ad-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="ad-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#ad-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#ad-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21-13.21-34.64-13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#ad-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#FFFFFF" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#FFFFFF" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#FFFFFF" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#FFFFFF" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#FFFFFF" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#FFFFFF" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users. Recall makes everyone one.</h1>
+      <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Get a Demo</a>
+        <a href="#" class="btn-secondary">See How It Works</a>
+      </div>
+      <div class="social-proof">
+        <span class="social-proof-text">Trusted by enterprise teams</span>
+        <div class="logo-placeholders">
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ui-mockup">
+        <div class="ui-titlebar">
+          <div class="ui-dot"></div>
+          <div class="ui-dot"></div>
+          <div class="ui-dot"></div>
+          <span class="ui-titlebar-text">Recall</span>
+        </div>
+        <div class="ui-body">
+          <div class="ui-query">
+            <div class="ui-avatar"></div>
+            <div class="ui-query-text">What were the key takeaways from last quarter's pipeline review?</div>
+          </div>
+          <div class="ui-sources">
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#E01E5A"></span>Slack</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#00A1E0"></span>Salesforce</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#7B68EE"></span>Notion</div>
+            <div class="ui-source-badge"><span class="ui-source-dot" style="background:#FF6C37"></span>HubSpot</div>
+          </div>
+          <div class="ui-response">
+            <div class="ui-response-avatar">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M4 8h8M8 4v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="ui-response-text">Based on the Q4 pipeline review discussed in #sales-leadership and synced with Salesforce data, three key themes emerged: <strong>Enterprise deal velocity improved 34%</strong> after implementing the new qualification framework, mid-market churn risk was flagged across 12 accounts, and the team agreed to prioritize vertical-specific messaging for Q1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OPTION B — LIGHT
+     ============================================================ -->
+<div class="section-divider"><hr></div>
+<div class="section-label"><span>Option B — Light &nbsp;|&nbsp; Centered Stacked + Abstract Nodes</span></div>
+
+<section id="b-light" class="hero-section option-b light">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bl-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="bl-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="bl-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#bl-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#bl-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#bl-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#050b16" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#050b16" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#050b16" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#050b16" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#050b16" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#050b16" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users.<br>Recall makes everyone one.</h1>
+      <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Get a Demo</a>
+        <a href="#" class="btn-secondary">See How It Works</a>
+      </div>
+      <div class="social-proof">
+        <span class="social-proof-text">Trusted by enterprise teams</span>
+        <div class="logo-placeholders">
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Node Graph SVG — Light -->
+      <div class="node-graph">
+        <svg viewBox="0 0 900 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bl-line" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#74CEFF" stop-opacity="0.3"/>
+              <stop offset="50%" stop-color="#4874FF" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#74CEFF" stop-opacity="0.3"/>
+            </linearGradient>
+            <radialGradient id="bl-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4874FF" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#4874FF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Background glow -->
+          <circle cx="450" cy="190" r="160" fill="url(#bl-glow)"/>
+
+          <!-- Connection lines -->
+          <line x1="100" y1="120" x2="300" y2="170" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="120" y1="280" x2="300" y2="210" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="250" y1="60" x2="380" y2="160" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="300" y1="170" x2="450" y2="190" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="300" y1="210" x2="450" y2="190" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="380" y1="160" x2="450" y2="190" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="580" y2="150" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="600" y2="230" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="560" y2="290" stroke="url(#bl-line)" stroke-width="2"/>
+          <line x1="580" y1="150" x2="740" y2="100" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="600" y1="230" x2="760" y2="250" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="560" y1="290" x2="700" y2="330" stroke="url(#bl-line)" stroke-width="1.5"/>
+          <line x1="580" y1="150" x2="680" y2="60" stroke="url(#bl-line)" stroke-width="1"/>
+          <line x1="760" y1="250" x2="830" y2="180" stroke="url(#bl-line)" stroke-width="1"/>
+
+          <!-- Source nodes (left) -->
+          <circle cx="100" cy="120" r="8" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="120" cy="280" r="8" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="250" cy="60" r="6" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+
+          <!-- Intermediate nodes -->
+          <circle cx="300" cy="170" r="10" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="300" cy="210" r="7" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="380" cy="160" r="7" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+
+          <!-- Center Recall node -->
+          <circle cx="450" cy="190" r="24" fill="url(#bl-g1)" opacity="0.15"/>
+          <circle cx="450" cy="190" r="16" fill="#4874FF"/>
+          <text x="450" y="195" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700" font-family="Manrope">R</text>
+
+          <!-- Output nodes (right) -->
+          <circle cx="580" cy="150" r="10" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="600" cy="230" r="8" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="560" cy="290" r="7" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+
+          <!-- Far nodes -->
+          <circle cx="740" cy="100" r="6" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="760" cy="250" r="8" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="700" cy="330" r="5" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="680" cy="60" r="5" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+          <circle cx="830" cy="180" r="6" fill="#EDEFF7" stroke="#D3D6E0" stroke-width="1.5"/>
+
+          <!-- Labels -->
+          <text x="80" y="108" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Slack</text>
+          <text x="90" y="303" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Salesforce</text>
+          <text x="228" y="48" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Jira</text>
+          <text x="730" y="88" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Sales</text>
+          <text x="770" y="268" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Ops</text>
+          <text x="686" y="348" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Finance</text>
+          <text x="668" y="48" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">Eng</text>
+          <text x="836" y="176" fill="#9DA2B3" font-size="11" font-weight="500" font-family="Manrope">HR</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OPTION B — DARK
+     ============================================================ -->
+<div class="section-divider"><hr></div>
+<div class="section-label"><span>Option B — Dark &nbsp;|&nbsp; Centered Stacked + Abstract Nodes</span></div>
+
+<section id="b-dark" class="hero-section option-b dark">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bd-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="bd-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="bd-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#bd-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#bd-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#bd-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#FFFFFF" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#FFFFFF" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#FFFFFF" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#FFFFFF" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#FFFFFF" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#FFFFFF" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users.<br>Recall makes everyone one.</h1>
+      <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Get a Demo</a>
+        <a href="#" class="btn-secondary">See How It Works</a>
+      </div>
+      <div class="social-proof">
+        <span class="social-proof-text">Trusted by enterprise teams</span>
+        <div class="logo-placeholders">
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+          <div class="logo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Node Graph SVG — Dark -->
+      <div class="node-graph">
+        <svg viewBox="0 0 900 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bd-line" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#74CEFF" stop-opacity="0.2"/>
+              <stop offset="50%" stop-color="#4874FF" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#74CEFF" stop-opacity="0.2"/>
+            </linearGradient>
+            <radialGradient id="bd-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4874FF" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#4874FF" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Background glow -->
+          <circle cx="450" cy="190" r="180" fill="url(#bd-glow)"/>
+
+          <!-- Connection lines -->
+          <line x1="100" y1="120" x2="300" y2="170" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="120" y1="280" x2="300" y2="210" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="250" y1="60" x2="380" y2="160" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="300" y1="170" x2="450" y2="190" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="300" y1="210" x2="450" y2="190" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="380" y1="160" x2="450" y2="190" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="580" y2="150" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="600" y2="230" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="450" y1="190" x2="560" y2="290" stroke="url(#bd-line)" stroke-width="2"/>
+          <line x1="580" y1="150" x2="740" y2="100" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="600" y1="230" x2="760" y2="250" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="560" y1="290" x2="700" y2="330" stroke="url(#bd-line)" stroke-width="1.5"/>
+          <line x1="580" y1="150" x2="680" y2="60" stroke="url(#bd-line)" stroke-width="1"/>
+          <line x1="760" y1="250" x2="830" y2="180" stroke="url(#bd-line)" stroke-width="1"/>
+
+          <!-- Source nodes (left) -->
+          <circle cx="100" cy="120" r="8" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="120" cy="280" r="8" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="250" cy="60" r="6" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+
+          <!-- Intermediate nodes -->
+          <circle cx="300" cy="170" r="10" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="300" cy="210" r="7" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="380" cy="160" r="7" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+
+          <!-- Center Recall node -->
+          <circle cx="450" cy="190" r="24" fill="#4874FF" opacity="0.2"/>
+          <circle cx="450" cy="190" r="16" fill="#4874FF"/>
+          <text x="450" y="195" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700" font-family="Manrope">R</text>
+
+          <!-- Output nodes (right) -->
+          <circle cx="580" cy="150" r="10" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="600" cy="230" r="8" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="560" cy="290" r="7" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+
+          <!-- Far nodes -->
+          <circle cx="740" cy="100" r="6" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="760" cy="250" r="8" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="700" cy="330" r="5" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="680" cy="60" r="5" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+          <circle cx="830" cy="180" r="6" fill="#1E1E24" stroke="#40424D" stroke-width="1.5"/>
+
+          <!-- Labels -->
+          <text x="80" y="108" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Slack</text>
+          <text x="90" y="303" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Salesforce</text>
+          <text x="228" y="48" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Jira</text>
+          <text x="730" y="88" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Sales</text>
+          <text x="770" y="268" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Ops</text>
+          <text x="686" y="348" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Finance</text>
+          <text x="668" y="48" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">Eng</text>
+          <text x="836" y="176" fill="#6E7180" font-size="11" font-weight="500" font-family="Manrope">HR</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OPTION C — LIGHT
+     ============================================================ -->
+<div class="section-divider"><hr></div>
+<div class="section-label"><span>Option C — Light &nbsp;|&nbsp; Asymmetric Editorial + Floating Cards</span></div>
+
+<section id="c-light" class="hero-section option-c light">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cl-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="cl-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="cl-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#cl-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#cl-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#cl-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#050b16" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#050b16" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#050b16" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#050b16" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#050b16" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#050b16" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users.<br>Recall makes everyone one.</h1>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-content-left">
+        <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-primary">Get a Demo</a>
+          <a href="#" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="social-proof">
+          <span class="social-proof-text">Trusted by enterprise teams</span>
+          <div class="logo-placeholders">
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual-right">
+        <!-- Memory Card -->
+        <div class="float-card card-memory">
+          <div class="float-card-title">Memory</div>
+          <div class="memory-layers">
+            <div class="memory-layer"><span class="memory-layer-icon"></span>Organization</div>
+            <div class="memory-layer"><span class="memory-layer-icon"></span>Team</div>
+            <div class="memory-layer"><span class="memory-layer-icon"></span>You</div>
+          </div>
+        </div>
+
+        <!-- Models Card -->
+        <div class="float-card card-models">
+          <div class="float-card-title">Models</div>
+          <div class="model-badges">
+            <span class="model-badge">GPT-4o</span>
+            <span class="model-badge">Claude</span>
+            <span class="model-badge">Gemini</span>
+            <span class="model-badge">Llama</span>
+            <span class="model-badge">Mistral</span>
+          </div>
+        </div>
+
+        <!-- Connectors Card -->
+        <div class="float-card card-connectors">
+          <div class="float-card-title">Connected Systems</div>
+          <div class="connector-row">
+            <span class="connector-chip"><span class="connector-dot" style="background:#E01E5A"></span>Slack</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#00A1E0"></span>Salesforce</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#0052CC"></span>Jira</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#FF6C37"></span>HubSpot</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#6E7180"></span>AS/400</span>
+          </div>
+        </div>
+
+        <!-- Security Card -->
+        <div class="float-card card-security">
+          <div class="float-card-title">Security</div>
+          <div class="security-items">
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              SOC 2 Compliant
+            </div>
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Audit Trails
+            </div>
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Role-Based Access
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OPTION C — DARK
+     ============================================================ -->
+<div class="section-divider"><hr></div>
+<div class="section-label"><span>Option C — Dark &nbsp;|&nbsp; Asymmetric Editorial + Floating Cards</span></div>
+
+<section id="c-dark" class="hero-section option-c dark">
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 1761.05 384.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cd-g1" x1="-3.58" y1="66.17" x2="349.86" y2="282.17" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="cd-g2" x1="45.1" y1="-13.48" x2="398.54" y2="202.51" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+          <linearGradient id="cd-g3" x1="-52.26" y1="145.83" x2="301.18" y2="361.82" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#74ceff"/><stop offset="1" stop-color="#4874ff"/></linearGradient>
+        </defs>
+        <path fill="url(#cd-g1)" d="M170.55,229.39l38.28,38.28c7.49,7.49,19.63,7.49,27.12,0l38.28-38.28c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-38.28-38.28c-7.49-7.49-19.63-7.49-27.12,0l-38.28,38.28c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0L4.32,193.84c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#cd-g2)" d="M246.31,119.99l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0Z"/>
+        <path fill="url(#cd-g3)" d="M198.46,288.54l-41.32-41.32c-5.81-5.81-15.23-5.81-21.04,0l-56.01,56.01c-5.76,5.76-5.76,15.1,0,20.85l56.01,56.01c5.81,5.81,15.23,5.81,21.04,0l41.32-41.32c13.21-13.21,34.64-13.21,47.85,0l41.32,41.32c5.81,5.81,15.23,5.81,21.04,0l56.01-56.01c5.76-5.76,5.76-15.1,0-20.85l-56.01-56.01c-5.81-5.81-15.23-5.81-21.04,0l-41.32,41.32c-13.21,13.21-34.64,13.21-47.85,0Z"/>
+        <path fill="#FFFFFF" d="M856.96,100.4c-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c56.88,0,101.39-29.18,120.18-74.68h-51.93c-14.35,21.27-36.6,31.16-68.25,31.16-42.54,0-75.18-24.24-82.1-67.76h212.67v-17.31c0-74.19-53.42-128.59-130.57-128.59ZM776.34,204.26c9.4-38.58,40.06-60.34,80.62-60.34s71.71,21.27,81.11,60.34h-161.73Z"/>
+        <path fill="#FFFFFF" d="M1145.34,143.92c38.08,0,66.77,20.28,78.64,51.44h47.48c-12.86-56.38-61.33-94.96-126.12-94.96-77.16,0-131.56,54.41-131.56,128.59s54.4,128.59,131.56,128.59c64.79,0,113.26-38.58,126.12-94.96h-47.48c-11.87,31.16-40.56,51.44-78.64,51.44-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07Z"/>
+        <rect fill="#FFFFFF" x="1612.88" width="46.99" height="351.16"/>
+        <rect fill="#FFFFFF" x="1714.06" width="46.99" height="351.16"/>
+        <path fill="#FFFFFF" d="M673.99,100.53c-60.31,1.61-100.85,36.27-100.85,106.68v143.95h46.99v-143.95c0-44.52,22.76-62.87,57.28-63.25h35.5v-43.53h-35.5c-1.14,0-2.28.05-3.41.09Z"/>
+        <path fill="#FFFFFF" d="M1429.22,100.4c-77.65,0-132.05,53.91-132.05,130.57,0,80.62,60.34,126.61,124.14,126.61,20.31,0,39.12-4.68,55.04-13.81v-42.9c-13.11,8.41-29.23,13.19-47.62,13.19-50.45,0-84.08-35.61-84.08-85.07s33.63-85.07,84.08-85.07,84.08,35.61,84.08,85.07v122.16h46.49v-120.18s1.83-130.57-130.07-130.57Z"/>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="#" class="nav-cta">Request Access</a>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-label">Enterprise AI Platform</div>
+      <h1 class="hero-headline">Every org has AI power users.<br>Recall makes everyone one.</h1>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-content-left">
+        <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence — it's tooling, context, and access.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn-primary">Get a Demo</a>
+          <a href="#" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="social-proof">
+          <span class="social-proof-text">Trusted by enterprise teams</span>
+          <div class="logo-placeholders">
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+            <div class="logo-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual-right">
+        <!-- Memory Card -->
+        <div class="float-card card-memory">
+          <div class="float-card-title">Memory</div>
+          <div class="memory-layers">
+            <div class="memory-layer"><span class="memory-layer-icon"></span>Organization</div>
+            <div class="memory-layer"><span class="memory-layer-icon"></span>Team</div>
+            <div class="memory-layer"><span class="memory-layer-icon"></span>You</div>
+          </div>
+        </div>
+
+        <!-- Models Card -->
+        <div class="float-card card-models">
+          <div class="float-card-title">Models</div>
+          <div class="model-badges">
+            <span class="model-badge">GPT-4o</span>
+            <span class="model-badge">Claude</span>
+            <span class="model-badge">Gemini</span>
+            <span class="model-badge">Llama</span>
+            <span class="model-badge">Mistral</span>
+          </div>
+        </div>
+
+        <!-- Connectors Card -->
+        <div class="float-card card-connectors">
+          <div class="float-card-title">Connected Systems</div>
+          <div class="connector-row">
+            <span class="connector-chip"><span class="connector-dot" style="background:#E01E5A"></span>Slack</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#00A1E0"></span>Salesforce</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#0052CC"></span>Jira</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#FF6C37"></span>HubSpot</span>
+            <span class="connector-chip"><span class="connector-dot" style="background:#6E7180"></span>AS/400</span>
+          </div>
+        </div>
+
+        <!-- Security Card -->
+        <div class="float-card card-security">
+          <div class="float-card-title">Security</div>
+          <div class="security-items">
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              SOC 2 Compliant
+            </div>
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Audit Trails
+            </div>
+            <div class="security-item">
+              <span class="security-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Role-Based Access
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="padding: 80px 0; text-align: center; background: #EDEFF7;">
+  <p style="color: #9DA2B3; font-size: 14px; font-family: Manrope, sans-serif;">End of hero explorations</p>
+</div>
+
+</body>
+</html>
