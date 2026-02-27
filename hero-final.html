@@ -3253,13 +3253,517 @@
       background: rgba(255, 255, 255, 0.05);
       border: 0.5px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      height: 320px;
+      min-height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #40424D;
       font-size: 13px;
       font-weight: 500;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    /* -- Tab Mockup shared -- */
+    .tab-mockup {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tab-mockup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .tab-mockup-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.3px;
+    }
+
+    .tab-mockup-badge {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .tab-mockup-badge.green {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+    }
+
+    .tab-mockup-badge.blue {
+      background: rgba(72, 116, 255, 0.12);
+      color: #74CEFF;
+    }
+
+    /* -- AI Champion: Rollout Dashboard -- */
+    .rollout-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .rollout-stat {
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .rollout-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .rollout-stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #6E7180;
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+    }
+
+    .rollout-teams {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rollout-team {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 14px;
+      animation: fadeInScale 0.4s ease-out both;
+    }
+
+    .rollout-team:nth-child(1) { animation-delay: 0.05s; }
+    .rollout-team:nth-child(2) { animation-delay: 0.15s; }
+    .rollout-team:nth-child(3) { animation-delay: 0.25s; }
+    .rollout-team:nth-child(4) { animation-delay: 0.35s; }
+
+    .rollout-team-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      min-width: 80px;
+    }
+
+    .rollout-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .rollout-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #4874FF, #74CEFF);
+      animation: barGrow 1s ease-out both;
+    }
+
+    .rollout-team-pct {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 36px;
+      text-align: right;
+    }
+
+    /* -- Business User: Smart Query UI -- */
+    .query-mockup {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .query-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+
+    .query-input-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .query-input-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .query-sources {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 4px;
+    }
+
+    .query-sources-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #6E7180;
+      margin-right: 4px;
+    }
+
+    .query-source-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      animation: fadeInScale 0.3s ease-out both;
+    }
+
+    .query-source-pill:nth-child(2) { animation-delay: 0.1s; }
+    .query-source-pill:nth-child(3) { animation-delay: 0.2s; }
+    .query-source-pill:nth-child(4) { animation-delay: 0.3s; }
+
+    .query-source-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .query-response {
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeInScale 0.5s ease-out 0.3s both;
+    }
+
+    .query-response-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: -0.1px;
+    }
+
+    .query-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .query-table th {
+      font-size: 10px;
+      font-weight: 600;
+      color: #6E7180;
+      text-align: left;
+      padding: 6px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .query-table td {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 8px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .query-table td:last-child {
+      text-align: right;
+    }
+
+    .query-table .highlight {
+      color: #74CEFF;
+      font-weight: 600;
+    }
+
+    /* -- CISO: Audit Log -- */
+    .audit-mockup {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .audit-status-bar {
+      display: flex;
+      gap: 10px;
+    }
+
+    .audit-status-item {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audit-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .audit-status-dot.green { background: #10B981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.4); }
+    .audit-status-dot.blue { background: #4874FF; box-shadow: 0 0 6px rgba(72, 116, 255, 0.4); }
+
+    .audit-status-text {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .audit-status-text strong {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 700;
+    }
+
+    .audit-log {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .audit-log-header {
+      display: grid;
+      grid-template-columns: 80px 1fr 100px 80px;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .audit-log-header span {
+      font-size: 10px;
+      font-weight: 600;
+      color: #6E7180;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .audit-log-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 100px 80px;
+      gap: 8px;
+      padding: 9px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      animation: fadeInScale 0.3s ease-out both;
+    }
+
+    .audit-log-row:nth-child(2) { animation-delay: 0.05s; }
+    .audit-log-row:nth-child(3) { animation-delay: 0.1s; }
+    .audit-log-row:nth-child(4) { animation-delay: 0.15s; }
+    .audit-log-row:nth-child(5) { animation-delay: 0.2s; }
+
+    .audit-log-row span {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .audit-log-row .audit-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #6E7180;
+    }
+
+    .audit-log-row .audit-user {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
+    }
+
+    .audit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .audit-badge.compliant {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+    }
+
+    .audit-badge.review {
+      background: rgba(245, 158, 11, 0.12);
+      color: #F59E0B;
+    }
+
+    /* -- CTO: Model Management -- */
+    .model-mgmt {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .model-mgmt-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .model-mgmt-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 10px 14px;
+      animation: fadeInScale 0.4s ease-out both;
+    }
+
+    .model-mgmt-row:nth-child(1) { animation-delay: 0.05s; }
+    .model-mgmt-row:nth-child(2) { animation-delay: 0.15s; }
+    .model-mgmt-row:nth-child(3) { animation-delay: 0.25s; }
+
+    .model-mgmt-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .model-mgmt-icon.claude { background: linear-gradient(135deg, #D4A574, #C4876E); }
+    .model-mgmt-icon.gpt { background: linear-gradient(135deg, #10A37F, #1AC99A); }
+    .model-mgmt-icon.llama { background: linear-gradient(135deg, #6E7180, #40424D); }
+
+    .model-mgmt-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .model-mgmt-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .model-mgmt-detail {
+      font-size: 10px;
+      font-weight: 400;
+      color: #6E7180;
+    }
+
+    .model-mgmt-action {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+    }
+
+    .model-mgmt-action.active {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10B981;
+    }
+
+    .model-mgmt-action.swap {
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      color: #FFFFFF;
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .model-mgmt-cost {
+      display: flex;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .model-mgmt-cost-card {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .model-mgmt-cost-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #6E7180;
+      letter-spacing: 0.2px;
+    }
+
+    .model-mgmt-cost-value {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 4px;
+    }
+
+    .model-mgmt-cost-value.current { color: rgba(255, 255, 255, 0.5); }
+    .model-mgmt-cost-value.projected { color: #10B981; }
+
+    .model-mgmt-cost-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6E7180;
+      font-size: 16px;
+      padding-top: 10px;
     }
 
     /* ========== SECTION 6: CLOSING CTA ========== */
@@ -4703,28 +5207,212 @@
           <h3 class="tab-panel-title">You scaled AI from one desk. Now scale it across the org.</h3>
           <p class="tab-panel-body">You're the one person who figured out how to get real results from AI. Now leadership wants you to make it work for everyone. But scaling means managing dozens of tools, keeping security happy, tracking spend, and somehow making AI useful for people who aren't you. You don't need another tool — you need a framework.</p>
         </div>
-        <div class="tab-panel-visual">Role-specific UI mockup</div>
+        <div class="tab-panel-visual">
+          <div class="tab-mockup">
+            <div class="tab-mockup-header">
+              <span class="tab-mockup-title">AI Rollout Dashboard</span>
+              <span class="tab-mockup-badge green">12 teams onboarded</span>
+            </div>
+            <div class="rollout-stats">
+              <div class="rollout-stat">
+                <div class="rollout-stat-value">2,847</div>
+                <div class="rollout-stat-label">Active Users</div>
+              </div>
+              <div class="rollout-stat">
+                <div class="rollout-stat-value">89%</div>
+                <div class="rollout-stat-label">Adoption Rate</div>
+              </div>
+              <div class="rollout-stat">
+                <div class="rollout-stat-value">142k</div>
+                <div class="rollout-stat-label">Queries / Week</div>
+              </div>
+            </div>
+            <div class="rollout-teams">
+              <div class="rollout-team">
+                <span class="rollout-team-name">Engineering</span>
+                <div class="rollout-bar-track"><div class="rollout-bar-fill" style="width:92%"></div></div>
+                <span class="rollout-team-pct">92%</span>
+              </div>
+              <div class="rollout-team">
+                <span class="rollout-team-name">Sales</span>
+                <div class="rollout-bar-track"><div class="rollout-bar-fill" style="width:67%"></div></div>
+                <span class="rollout-team-pct">67%</span>
+              </div>
+              <div class="rollout-team">
+                <span class="rollout-team-name">Finance</span>
+                <div class="rollout-bar-track"><div class="rollout-bar-fill" style="width:54%"></div></div>
+                <span class="rollout-team-pct">54%</span>
+              </div>
+              <div class="rollout-team">
+                <span class="rollout-team-name">Legal</span>
+                <div class="rollout-bar-track"><div class="rollout-bar-fill" style="width:34%"></div></div>
+                <span class="rollout-team-pct">34%</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="tab-panel panel-business">
         <div class="tab-panel-text">
           <h3 class="tab-panel-title">AI that works the way you do — no learning curve.</h3>
           <p class="tab-panel-body">You don't want to become an AI expert. You want to ask a question and get an answer that actually knows your accounts, your pipeline, your context. Recall connects to the tools you already use and delivers results without the prompt engineering.</p>
         </div>
-        <div class="tab-panel-visual">Role-specific UI mockup</div>
+        <div class="tab-panel-visual">
+          <div class="query-mockup">
+            <div class="query-input">
+              <div class="query-input-icon">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M5 1L10 6L5 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="query-input-text">Q3 pipeline by region?</span>
+            </div>
+            <div class="query-sources">
+              <span class="query-sources-label">Pulling from</span>
+              <div class="query-source-pill">
+                <div class="query-source-dot" style="background:#00A1E0;"></div>
+                Salesforce
+              </div>
+              <div class="query-source-pill">
+                <div class="query-source-dot" style="background:#34A853;"></div>
+                Google Sheets
+              </div>
+              <div class="query-source-pill">
+                <div class="query-source-dot" style="background:#E01E5A;"></div>
+                Slack
+              </div>
+            </div>
+            <div class="query-response">
+              <span class="query-response-title">Q3 Pipeline Summary</span>
+              <table class="query-table">
+                <thead>
+                  <tr><th>Region</th><th>Pipeline</th><th>QoQ</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>North America</td><td class="highlight">$4.2M</td><td style="color:#10B981;">+18%</td></tr>
+                  <tr><td>EMEA</td><td>$2.8M</td><td style="color:#10B981;">+12%</td></tr>
+                  <tr><td>APAC</td><td>$1.6M</td><td style="color:#F59E0B;">+3%</td></tr>
+                  <tr><td style="color:rgba(255,255,255,0.9);font-weight:600;">Total</td><td class="highlight">$8.6M</td><td style="color:#10B981;">+14%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="tab-panel panel-ciso">
         <div class="tab-panel-text">
           <h3 class="tab-panel-title">Govern AI usage without blocking adoption.</h3>
           <p class="tab-panel-body">Shadow AI is already in your org. The question isn't whether people are using it — it's whether you can see what they're doing. Recall gives you SOC 2 compliance, audit trails, data governance, and role-based access controls from day one. Security built in, not bolted on.</p>
         </div>
-        <div class="tab-panel-visual">Role-specific UI mockup</div>
+        <div class="tab-panel-visual">
+          <div class="audit-mockup">
+            <div class="tab-mockup-header">
+              <span class="tab-mockup-title">Compliance Overview</span>
+              <span class="tab-mockup-badge green">All clear</span>
+            </div>
+            <div class="audit-status-bar">
+              <div class="audit-status-item">
+                <div class="audit-status-dot green"></div>
+                <span class="audit-status-text"><strong>SOC 2</strong> Active</span>
+              </div>
+              <div class="audit-status-item">
+                <div class="audit-status-dot blue"></div>
+                <span class="audit-status-text"><strong>14</strong> Policies</span>
+              </div>
+              <div class="audit-status-item">
+                <div class="audit-status-dot green"></div>
+                <span class="audit-status-text"><strong>0</strong> Violations</span>
+              </div>
+            </div>
+            <div class="audit-log">
+              <div class="audit-log-header">
+                <span>Time</span>
+                <span>User</span>
+                <span>Action</span>
+                <span>Status</span>
+              </div>
+              <div class="audit-log-row">
+                <span class="audit-time">09:42</span>
+                <span class="audit-user">S. Chen</span>
+                <span>Model query</span>
+                <span><span class="audit-badge compliant">Compliant</span></span>
+              </div>
+              <div class="audit-log-row">
+                <span class="audit-time">09:38</span>
+                <span class="audit-user">M. Torres</span>
+                <span>Data export</span>
+                <span><span class="audit-badge compliant">Compliant</span></span>
+              </div>
+              <div class="audit-log-row">
+                <span class="audit-time">09:31</span>
+                <span class="audit-user">J. Park</span>
+                <span>File access</span>
+                <span><span class="audit-badge review">Review</span></span>
+              </div>
+              <div class="audit-log-row">
+                <span class="audit-time">09:24</span>
+                <span class="audit-user">R. Davis</span>
+                <span>API call</span>
+                <span><span class="audit-badge compliant">Compliant</span></span>
+              </div>
+              <div class="audit-log-row">
+                <span class="audit-time">09:15</span>
+                <span class="audit-user">L. Kim</span>
+                <span>Model swap</span>
+                <span><span class="audit-badge compliant">Compliant</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="tab-panel panel-cto">
         <div class="tab-panel-text">
           <h3 class="tab-panel-title">Future-proof your AI stack without rebuilding it.</h3>
           <p class="tab-panel-body">You picked a model this quarter. A better one ships next quarter. Recall's model fluidity means you're never locked in — swap, add, or upgrade models without touching the integration layer. One framework that grows with the technology, not against it.</p>
         </div>
-        <div class="tab-panel-visual">Role-specific UI mockup</div>
+        <div class="tab-panel-visual">
+          <div class="model-mgmt">
+            <div class="tab-mockup-header">
+              <span class="tab-mockup-title">Model Management</span>
+              <span class="tab-mockup-badge blue">3 models active</span>
+            </div>
+            <div class="model-mgmt-rows">
+              <div class="model-mgmt-row">
+                <div class="model-mgmt-icon claude">C</div>
+                <div class="model-mgmt-info">
+                  <span class="model-mgmt-name">Claude 3.5 Sonnet</span>
+                  <span class="model-mgmt-detail">Engineering, Product — 12k queries/wk</span>
+                </div>
+                <span class="model-mgmt-action active">Active</span>
+              </div>
+              <div class="model-mgmt-row">
+                <div class="model-mgmt-icon gpt">G</div>
+                <div class="model-mgmt-info">
+                  <span class="model-mgmt-name">GPT-4o</span>
+                  <span class="model-mgmt-detail">Sales, Marketing — 8k queries/wk</span>
+                </div>
+                <span class="model-mgmt-action swap">Swap</span>
+              </div>
+              <div class="model-mgmt-row">
+                <div class="model-mgmt-icon llama">L</div>
+                <div class="model-mgmt-info">
+                  <span class="model-mgmt-name">Llama 3 (Private)</span>
+                  <span class="model-mgmt-detail">Legal, Compliance — 3k queries/wk</span>
+                </div>
+                <span class="model-mgmt-action active">Active</span>
+              </div>
+            </div>
+            <div class="model-mgmt-cost">
+              <div class="model-mgmt-cost-card">
+                <div class="model-mgmt-cost-label">Current Spend</div>
+                <div class="model-mgmt-cost-value current">$12.4k</div>
+              </div>
+              <div class="model-mgmt-cost-arrow">→</div>
+              <div class="model-mgmt-cost-card">
+                <div class="model-mgmt-cost-label">After Swap</div>
+                <div class="model-mgmt-cost-value projected">$8.1k</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
