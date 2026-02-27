@@ -1500,54 +1500,147 @@
       line-height: 1.55;
     }
 
-    /* P1 — Framework: hub + spoke */
-    .p1-hub {
-      position: relative;
-      width: 160px;
-      height: 160px;
-    }
-
-    .p1-hub-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #4874FF, #74CEFF);
-      box-shadow: 0 4px 16px rgba(72, 116, 255, 0.25);
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: pulseGlow 3s ease-in-out infinite;
-    }
-
-    .p1-hub-center svg { width: 22px; height: 22px; color: #FFFFFF; }
-
-    .p1-spoke {
-      position: absolute;
-      width: 32px; height: 32px;
+    /* P1 — Framework: Command Center Grid */
+    .cmd-center {
       background: #FFFFFF;
-      border-radius: 10px;
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 6px rgba(8, 14, 28, 0.04);
+      border-radius: 14px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 8px rgba(8, 14, 28, 0.04);
+      overflow: hidden;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .cmd-center.dark {
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+    }
+
+    .cmd-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(8, 14, 28, 0.05);
+    }
+
+    .cmd-center.dark .cmd-titlebar {
+      border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .cmd-titlebar-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cmd-titlebar-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+    }
+
+    .cmd-titlebar-text {
+      font-size: 10px;
+      font-weight: 600;
+      color: #080E1C;
+      letter-spacing: 0.3px;
+    }
+
+    .cmd-center.dark .cmd-titlebar-text { color: #FFFFFF; }
+
+    .cmd-titlebar-status {
+      font-size: 9px;
+      font-weight: 500;
+      color: #10B981;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .cmd-titlebar-status::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #10B981;
+      flex-shrink: 0;
+    }
+
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(8, 14, 28, 0.04);
+    }
+
+    .cmd-center.dark .cmd-grid {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .cmd-cell {
+      background: #FFFFFF;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeInScale 0.4s ease-out both;
+    }
+
+    .cmd-center.dark .cmd-cell {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .cmd-cell:nth-child(1) { animation-delay: 0s; }
+    .cmd-cell:nth-child(2) { animation-delay: 0.06s; }
+    .cmd-cell:nth-child(3) { animation-delay: 0.12s; }
+    .cmd-cell:nth-child(4) { animation-delay: 0.18s; }
+    .cmd-cell:nth-child(5) { animation-delay: 0.24s; }
+    .cmd-cell:nth-child(6) { animation-delay: 0.3s; }
+
+    .cmd-cell-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
-    .p1-spoke svg { width: 14px; height: 14px; color: #6E7180; }
+    .cmd-cell-icon.blue { background: rgba(72, 116, 255, 0.1); }
+    .cmd-cell-icon.green { background: rgba(16, 185, 129, 0.1); }
+    .cmd-cell-icon.purple { background: rgba(139, 92, 246, 0.1); }
+    .cmd-cell-icon.orange { background: rgba(249, 115, 22, 0.1); }
+    .cmd-cell-icon.teal { background: rgba(20, 184, 166, 0.1); }
+    .cmd-cell-icon.rose { background: rgba(244, 63, 94, 0.1); }
 
-    .p1-spoke:nth-child(2) { top: 4px; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3.5s ease-in-out infinite; }
-    .p1-spoke:nth-child(3) { bottom: 4px; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3.5s ease-in-out infinite 0.5s; }
-    .p1-spoke:nth-child(4) { left: 4px; top: 50%; transform: translateY(-50%); animation: floatUpSlow 4s ease-in-out infinite 1s; }
-    .p1-spoke:nth-child(5) { right: 4px; top: 50%; transform: translateY(-50%); animation: floatUpSlow 4s ease-in-out infinite 1.5s; }
+    .cmd-cell-icon svg { width: 14px; height: 14px; }
+    .cmd-cell-icon.blue svg { color: #4874FF; }
+    .cmd-cell-icon.green svg { color: #10B981; }
+    .cmd-cell-icon.purple svg { color: #8B5CF6; }
+    .cmd-cell-icon.orange svg { color: #F97316; }
+    .cmd-cell-icon.teal svg { color: #14B8A6; }
+    .cmd-cell-icon.rose svg { color: #F43F5E; }
 
-    .p1-spoke-line {
+    .cmd-cell-status {
       position: absolute;
-      background: linear-gradient(to bottom, rgba(72,116,255,0.15), transparent);
-      width: 1px;
-      height: 20px;
+      top: -1px; right: -1px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 1.5px solid #FFFFFF;
     }
+
+    .cmd-center.dark .cmd-cell-status { border-color: #0C1222; }
+
+    .cmd-cell-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: #6E7180;
+      letter-spacing: 0.2px;
+      text-align: center;
+    }
+
+    .cmd-center.dark .cmd-cell-label { color: #9DA2B3; }
 
     /* P1 — Fluidity: swapping layers */
     .p1-layers {
@@ -3792,12 +3885,19 @@
       <!-- One Framework -->
       <div class="p1-card">
         <div class="p1-card-visual">
-          <div class="p1-hub">
-            <div class="p1-hub-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
-            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></div>
-            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div class="cmd-center">
+            <div class="cmd-titlebar">
+              <div class="cmd-titlebar-left"><div class="cmd-titlebar-dot"></div><span class="cmd-titlebar-text">Recall Framework</span></div>
+              <span class="cmd-titlebar-status">Live</span>
+            </div>
+            <div class="cmd-grid">
+              <div class="cmd-cell"><div class="cmd-cell-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Models</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Users</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Connectors</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Memory</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Data</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Permissions</span></div>
+            </div>
           </div>
         </div>
         <div class="p1-card-text">
@@ -3890,16 +3990,19 @@
       <!-- 1: Framework -->
       <div class="p2-feature">
         <div class="p2-feature-visual">
-          <div class="p2-framework-visual">
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="4"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
-            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg></div>
+          <div class="cmd-center">
+            <div class="cmd-titlebar">
+              <div class="cmd-titlebar-left"><div class="cmd-titlebar-dot"></div><span class="cmd-titlebar-text">Recall Framework</span></div>
+              <span class="cmd-titlebar-status">Live</span>
+            </div>
+            <div class="cmd-grid">
+              <div class="cmd-cell"><div class="cmd-cell-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Models</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Users</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Connectors</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Memory</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Data</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Permissions</span></div>
+            </div>
           </div>
         </div>
         <div class="p2-feature-text">
@@ -4060,12 +4163,19 @@
       <div class="p3-preview" id="p3Preview">
         <!-- Framework preview -->
         <div class="p3-preview-panel active" data-panel="0">
-          <div class="p1-hub" style="width:200px;height:200px">
-            <div class="p1-hub-center" style="width:60px;height:60px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
-            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4m0 12v4"/></svg></div>
-            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
-            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div class="cmd-center" style="max-width:320px">
+            <div class="cmd-titlebar">
+              <div class="cmd-titlebar-left"><div class="cmd-titlebar-dot"></div><span class="cmd-titlebar-text">Recall Framework</span></div>
+              <span class="cmd-titlebar-status">Live</span>
+            </div>
+            <div class="cmd-grid">
+              <div class="cmd-cell"><div class="cmd-cell-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Models</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Users</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Connectors</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Memory</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Data</span></div>
+              <div class="cmd-cell"><div class="cmd-cell-icon rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="cmd-cell-status"></div></div><span class="cmd-cell-label">Permissions</span></div>
+            </div>
           </div>
         </div>
         <!-- Fluidity preview -->
@@ -4125,14 +4235,61 @@
           <p class="p4-feature-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p>
         </div>
         <div class="p4-feature-visual">
-          <div class="p4-dark-hub">
-            <div class="p4-dark-orbit">
-              <div class="p4-dark-node">AI</div>
-              <div class="p4-dark-node">DB</div>
-              <div class="p4-dark-node">API</div>
-              <div class="p4-dark-node">USR</div>
+          <div class="cmd-center dark">
+            <div class="cmd-titlebar">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#4874FF,#74CEFF);"></div>
+                <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.3px;">Recall Framework</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:#10B981;"></div>
+                <span style="font-size:9px;color:rgba(255,255,255,0.4);font-weight:500;">Live</span>
+              </div>
             </div>
-            <div class="p4-dark-center"></div>
+            <div class="cmd-grid">
+              <div class="cmd-cell" style="animation-delay:0s">
+                <div class="cmd-cell-icon blue" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" fill="white" opacity="0.9"/><rect x="8" y="1" width="5" height="5" rx="1" fill="white" opacity="0.5"/><rect x="1" y="8" width="5" height="5" rx="1" fill="white" opacity="0.5"/><rect x="8" y="8" width="5" height="5" rx="1" fill="white" opacity="0.7"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Models</span>
+              </div>
+              <div class="cmd-cell" style="animation-delay:0.05s">
+                <div class="cmd-cell-icon green" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="3" fill="white" opacity="0.9"/><path d="M2 12c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Users</span>
+              </div>
+              <div class="cmd-cell" style="animation-delay:0.1s">
+                <div class="cmd-cell-icon purple" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="3" cy="7" r="2" fill="white" opacity="0.8"/><circle cx="11" cy="7" r="2" fill="white" opacity="0.8"/><line x1="5" y1="7" x2="9" y2="7" stroke="white" stroke-width="1.5" opacity="0.6"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Connectors</span>
+              </div>
+              <div class="cmd-cell" style="animation-delay:0.15s">
+                <div class="cmd-cell-icon orange" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/><circle cx="7" cy="7" r="2" fill="white" opacity="0.9"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Memory</span>
+              </div>
+              <div class="cmd-cell" style="animation-delay:0.2s">
+                <div class="cmd-cell-icon teal" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="8" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/><line x1="2" y1="6" x2="12" y2="6" stroke="white" stroke-width="1" opacity="0.5"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Data</span>
+              </div>
+              <div class="cmd-cell" style="animation-delay:0.25s">
+                <div class="cmd-cell-icon rose" style="position:relative;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="3" y="2" width="8" height="10" rx="1.5" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/><line x1="5" y1="5" x2="9" y2="5" stroke="white" stroke-width="1" opacity="0.5"/><line x1="5" y1="7.5" x2="9" y2="7.5" stroke="white" stroke-width="1" opacity="0.5"/></svg>
+                  <div class="cmd-cell-status"></div>
+                </div>
+                <span class="cmd-cell-label">Permissions</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
