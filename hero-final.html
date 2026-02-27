@@ -23,8 +23,6 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      max-width: 1440px;
-      margin: 0 auto;
     }
 
     .hero-container {
@@ -82,23 +80,27 @@
 
     /* ========== HEADER / NAV ========== */
     .hero-header {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       padding: 16px;
-      z-index: 10;
+      z-index: 100;
     }
 
     .hero-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 16px;
       padding: 12px;
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 8px rgba(8, 14, 28, 0.04);
       overflow: hidden;
+      max-width: 1408px;
+      margin: 0 auto;
     }
 
     .nav-left {
@@ -856,6 +858,10 @@
       box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
       padding: 96px 64px;
       overflow: hidden;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
     }
 
     .section-header {
@@ -1922,6 +1928,27 @@
 </head>
 <body>
 
+<!-- Floating Nav -->
+<header class="hero-header">
+  <nav class="hero-nav">
+    <div class="nav-left">
+      <img class="nav-logo" src="https://www.figma.com/api/mcp/asset/77bee267-f81a-42ad-9513-50b6372ed73b" alt="Recall">
+    </div>
+    <div class="nav-center">
+      <a href="#" class="nav-link">Product</a>
+      <span class="nav-dot"></span>
+      <a href="#" class="nav-link">Solutions</a>
+      <span class="nav-dot"></span>
+      <a href="#" class="nav-link">About</a>
+      <span class="nav-dot"></span>
+      <a href="#" class="nav-link">Resources</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-cta">Get a Demo</a>
+    </div>
+  </nav>
+</header>
+
 <div class="hero-wrapper">
   <div class="hero-container">
 
@@ -1935,27 +1962,6 @@
     <div class="hero-glow">
       <img src="https://www.figma.com/api/mcp/asset/a2f76806-59a1-4ac2-8ba1-cf59d7967c33" alt="" aria-hidden="true">
     </div>
-
-    <!-- Header / Nav -->
-    <header class="hero-header">
-      <nav class="hero-nav">
-        <div class="nav-left">
-          <img class="nav-logo" src="https://www.figma.com/api/mcp/asset/77bee267-f81a-42ad-9513-50b6372ed73b" alt="Recall">
-        </div>
-        <div class="nav-center">
-          <a href="#" class="nav-link">Product</a>
-          <span class="nav-dot"></span>
-          <a href="#" class="nav-link">Solutions</a>
-          <span class="nav-dot"></span>
-          <a href="#" class="nav-link">About</a>
-          <span class="nav-dot"></span>
-          <a href="#" class="nav-link">Resources</a>
-        </div>
-        <div class="nav-right">
-          <a href="#" class="nav-cta">Get a Demo</a>
-        </div>
-      </nav>
-    </header>
 
     <!-- Hero Content -->
     <div class="hero-content">
