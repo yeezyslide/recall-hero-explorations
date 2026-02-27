@@ -904,31 +904,68 @@
       letter-spacing: -0.15px;
     }
 
-    /* ========== SOUND FAMILIAR: PERSONA PAIN CARDS ========== */
+    /* ========== SOUND FAMILIAR: 3D CAROUSEL ========== */
     .section-familiar {
       background: #F5F5F9;
     }
 
-    .familiar-grid {
+    .familiar-carousel {
       margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      position: relative;
+      height: 380px;
+      perspective: 1200px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .familiar-card {
+      position: absolute;
+      width: 420px;
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.04);
+      padding: 36px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.04), 0 8px 32px rgba(8, 14, 28, 0.08);
       display: flex;
       flex-direction: column;
       gap: 20px;
-      transition: box-shadow 0.3s ease;
+      left: 50%;
+      top: 50%;
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
     }
 
-    .familiar-card:hover {
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.06), 0 4px 20px rgba(8, 14, 28, 0.06);
+    /* Center (active) */
+    .familiar-card[data-pos="0"] {
+      transform: translate(-50%, -50%) translateZ(0) scale(1);
+      z-index: 3;
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    /* Right */
+    .familiar-card[data-pos="1"] {
+      transform: translate(15%, -50%) translateZ(-120px) scale(0.88) rotateY(-8deg);
+      z-index: 2;
+      opacity: 0.6;
+      filter: blur(3px);
+    }
+
+    /* Far back (hidden behind) */
+    .familiar-card[data-pos="2"] {
+      transform: translate(-50%, -50%) translateZ(-200px) scale(0.78);
+      z-index: 1;
+      opacity: 0;
+      filter: blur(6px);
+      pointer-events: none;
+    }
+
+    /* Left */
+    .familiar-card[data-pos="3"] {
+      transform: translate(-115%, -50%) translateZ(-120px) scale(0.88) rotateY(8deg);
+      z-index: 2;
+      opacity: 0.6;
+      filter: blur(3px);
     }
 
     .familiar-persona {
@@ -941,6 +978,7 @@
       width: 40px;
       height: 40px;
       border-radius: 12px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -953,32 +991,15 @@
       color: #FFFFFF;
     }
 
-    .familiar-avatar.ops { background: linear-gradient(135deg, #4874FF, #74CEFF); }
-    .familiar-avatar.sales { background: linear-gradient(135deg, #10A37F, #34D399); }
-    .familiar-avatar.security { background: linear-gradient(135deg, #F59E0B, #FBBF24); }
-    .familiar-avatar.exec { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
-
-    .familiar-persona-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .familiar-name {
-      font-size: 14px;
+    .familiar-role {
+      font-size: 13px;
       font-weight: 600;
       color: #080E1C;
       letter-spacing: -0.1px;
     }
 
-    .familiar-role {
-      font-size: 12px;
-      font-weight: 500;
-      color: #9DA2B3;
-    }
-
     .familiar-quote {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 600;
       color: #080E1C;
       letter-spacing: -0.5px;
@@ -990,6 +1011,32 @@
       font-weight: 400;
       color: #6E7180;
       line-height: 1.65;
+    }
+
+    .familiar-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .familiar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #D3D6E0;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .familiar-dot.active {
+      background: #4874FF;
+      width: 24px;
+      border-radius: 4px;
     }
 
     /* -- Wave animation (Memory visual) -- */
@@ -3038,62 +3085,57 @@
       <p class="section-sub">We've heard this from every enterprise we talk to.</p>
     </div>
 
-    <div class="familiar-grid">
-      <div class="familiar-card">
+    <div class="familiar-carousel" id="familiarCarousel">
+      <div class="familiar-card" data-pos="0" data-index="0">
         <div class="familiar-persona">
-          <div class="familiar-avatar ops">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="familiar-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div class="familiar-persona-info">
-            <span class="familiar-name">Jordan, IT Ops Lead</span>
-            <span class="familiar-role">Operations</span>
-          </div>
+          <span class="familiar-role">IT Ops Lead</span>
         </div>
         <div class="familiar-quote">"I'm the only power user."</div>
         <p class="familiar-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
       </div>
 
-      <div class="familiar-card">
+      <div class="familiar-card" data-pos="1" data-index="1">
         <div class="familiar-persona">
-          <div class="familiar-avatar sales">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <div class="familiar-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div class="familiar-persona-info">
-            <span class="familiar-name">Priya, Sales Director</span>
-            <span class="familiar-role">Revenue</span>
-          </div>
+          <span class="familiar-role">Sales Director</span>
         </div>
         <div class="familiar-quote">"Not any AI — MY AI."</div>
         <p class="familiar-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
       </div>
 
-      <div class="familiar-card">
+      <div class="familiar-card" data-pos="2" data-index="2">
         <div class="familiar-persona">
-          <div class="familiar-avatar exec">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="familiar-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div class="familiar-persona-info">
-            <span class="familiar-name">Marcus, CTO</span>
-            <span class="familiar-role">Technology</span>
-          </div>
+          <span class="familiar-role">CTO</span>
         </div>
         <div class="familiar-quote">"How do I future-proof this?"</div>
         <p class="familiar-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
       </div>
 
-      <div class="familiar-card">
+      <div class="familiar-card" data-pos="3" data-index="3">
         <div class="familiar-persona">
-          <div class="familiar-avatar security">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <div class="familiar-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <div class="familiar-persona-info">
-            <span class="familiar-name">Lisa, VP of Finance</span>
-            <span class="familiar-role">Operations</span>
-          </div>
+          <span class="familiar-role">VP of Finance</span>
         </div>
         <div class="familiar-quote">"Who is doing what?"</div>
         <p class="familiar-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
       </div>
+    </div>
+
+    <div class="familiar-dots" id="familiarDots">
+      <button class="familiar-dot active" data-index="0"></button>
+      <button class="familiar-dot" data-index="1"></button>
+      <button class="familiar-dot" data-index="2"></button>
+      <button class="familiar-dot" data-index="3"></button>
     </div>
   </section>
 
@@ -3817,6 +3859,53 @@
 </div>
 
 
+<!-- Sound Familiar: 3D Carousel JS -->
+<script>
+(function() {
+  const cards = document.querySelectorAll('#familiarCarousel .familiar-card');
+  const dots = document.querySelectorAll('#familiarDots .familiar-dot');
+  if (!cards.length) return;
+
+  let active = 0;
+  let autoTimer;
+
+  function setActive(idx) {
+    active = idx;
+    cards.forEach(c => {
+      const ci = parseInt(c.dataset.index);
+      const pos = (ci - idx + 4) % 4;
+      c.setAttribute('data-pos', pos);
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function next() {
+    setActive((active + 1) % 4);
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(next, 4000);
+  }
+
+  // Click card to bring to front
+  cards.forEach(c => c.addEventListener('click', () => {
+    const pos = parseInt(c.getAttribute('data-pos'));
+    if (pos !== 0) {
+      setActive(parseInt(c.dataset.index));
+      startAuto();
+    }
+  }));
+
+  // Click dot to jump
+  dots.forEach(d => d.addEventListener('click', () => {
+    setActive(parseInt(d.dataset.index));
+    startAuto();
+  }));
+
+  startAuto();
+})();
+</script>
 
 </body>
 </html>
