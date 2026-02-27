@@ -12,7 +12,8 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     body { background: #FFFFFF; }
-    img { display: block; max-width: 100%; }
+    img { display: block; }
+    img.responsive { max-width: 100%; }
     a { text-decoration: none; color: inherit; }
 
     /* ========== HERO WRAPPER ========== */
@@ -107,7 +108,8 @@
 
     .nav-logo {
       height: 20px;
-      width: auto;
+      width: 91.6px;
+      object-fit: contain;
     }
 
     .nav-center {
@@ -198,20 +200,17 @@
       height: 20px;
       background: rgba(72, 116, 255, 0.1);
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
       position: relative;
     }
 
     .hero-badge-icon img {
       position: absolute;
-      width: 18px;
-      height: 18px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      max-width: none;
+      left: 9px;
+      top: 4px;
     }
 
     .hero-badge-text {
@@ -284,6 +283,7 @@
     .btn-primary-icon {
       width: 19.75px;
       height: 16px;
+      max-width: none;
       flex-shrink: 0;
     }
 
@@ -360,16 +360,19 @@
     .integration-icon img {
       width: 18px;
       height: 18px;
+      max-width: none;
     }
 
     .integration-icon.salesforce-icon img {
       width: 26px;
       height: 18px;
+      max-width: none;
     }
 
     .integration-icon.hubspot-icon img {
       width: 17px;
       height: 18px;
+      max-width: none;
     }
 
     /* Department icons (right side) */
@@ -384,11 +387,17 @@
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
+      position: relative;
     }
 
     .dept-icon img {
+      position: absolute;
       width: 24px;
       height: 24px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     /* Pill labels (Systems / Memory) */
@@ -414,11 +423,17 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
 
     .pill-label-icon img {
+      position: absolute;
       width: 24px;
       height: 24px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .pill-label-text {
@@ -483,8 +498,10 @@
     }
 
     .chat-title-logo {
-      height: 10px;
-      width: auto;
+      height: 10.05px;
+      width: 46.05px;
+      max-width: none;
+      object-fit: contain;
     }
 
     .chat-dots-right {
@@ -569,6 +586,7 @@
     .chat-avatar-ai img {
       width: 11.3px;
       height: 9.4px;
+      max-width: none;
     }
 
     .chat-bubble-ai {
@@ -602,11 +620,17 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
 
     .chat-tools-icon img {
+      position: absolute;
       width: 24px;
       height: 24px;
+      max-width: none;
+      left: 50%;
+      top: calc(50% + 0.19px);
+      transform: translate(-50%, -50%);
     }
 
     .chat-tools-text {
@@ -664,11 +688,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
 
     .chat-input-btn img {
+      position: absolute;
       width: 23.66px;
       height: 23.66px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .chat-input-placeholder {
@@ -691,11 +722,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
 
     .chat-send-btn img {
+      position: absolute;
       width: 23.66px;
       height: 23.66px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     /* ---- Central orb ---- */
@@ -744,6 +782,7 @@
     .orb-core img {
       width: 28.8px;
       height: 26.4px;
+      max-width: none;
     }
 
     /* ========== POSITIONS FOR INTEGRATIONS ========== */
