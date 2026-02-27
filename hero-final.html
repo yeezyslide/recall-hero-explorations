@@ -204,13 +204,14 @@
       position: relative;
     }
 
+    /* Grid-01: 24x24 component at left:9 top:4, inset 12.5% → 18x18 content at (12,7) */
     .hero-badge-icon img {
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       max-width: none;
-      left: 9px;
-      top: 4px;
+      left: 12px;
+      top: 7px;
     }
 
     .hero-badge-text {
@@ -390,10 +391,11 @@
       position: relative;
     }
 
+    /* User-05: inset 12.5%/20.83% of 24 → 14x18 content centered in 36x36 */
     .dept-icon img {
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: 14px;
+      height: 18px;
       max-width: none;
       left: 50%;
       top: 50%;
@@ -426,10 +428,22 @@
       position: relative;
     }
 
-    .pill-label-icon img {
+    /* toolbox-05: inset 12.5% of 24 → 18x18 content, fills container exactly */
+    .pill-systems .pill-label-icon img {
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Users-03: inset 16.67%/8.33% of 24 → 20x16 content, slight horizontal overflow */
+    .pill-memory .pill-label-icon img {
+      position: absolute;
+      width: 20px;
+      height: 16px;
       max-width: none;
       left: 50%;
       top: 50%;
@@ -623,13 +637,14 @@
       position: relative;
     }
 
+    /* wrench-01: inset 12.5% of 24 → 18x18 content, centered in 16.76 (slight crop) */
     .chat-tools-icon img {
       position: absolute;
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       max-width: none;
       left: 50%;
-      top: calc(50% + 0.19px);
+      top: 50%;
       transform: translate(-50%, -50%);
     }
 
@@ -683,19 +698,31 @@
     .chat-input-btn {
       width: 23.46px;
       height: 23.46px;
-      background: rgba(8, 14, 28, 0.05);
       border-radius: 6.7px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
+      background: rgba(8, 14, 28, 0.05);
     }
 
-    .chat-input-btn img {
+    /* Dots-Plus: inset 16.67% of 23.655 → 15.77x15.77 content */
+    .chat-input-btn.btn-plus img {
       position: absolute;
-      width: 23.66px;
-      height: 23.66px;
+      width: 15.77px;
+      height: 15.77px;
+      max-width: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Microphone-02: inset 4.17%/12.5% of 23.655 → 17.74x21.68 content */
+    .chat-input-btn.btn-mic img {
+      position: absolute;
+      width: 17.74px;
+      height: 21.68px;
       max-width: none;
       left: 50%;
       top: 50%;
@@ -726,10 +753,11 @@
       position: relative;
     }
 
+    /* Arrow-Right: inset 16.67% of 23.655 → 15.77x15.77 content */
     .chat-send-btn img {
       position: absolute;
-      width: 23.66px;
-      height: 23.66px;
+      width: 15.77px;
+      height: 15.77px;
       max-width: none;
       left: 50%;
       top: 50%;
@@ -1029,13 +1057,13 @@
             <!-- Input bar -->
             <div class="chat-input">
               <div class="chat-input-left">
-                <div class="chat-input-btn">
+                <div class="chat-input-btn btn-plus">
                   <img src="https://www.figma.com/api/mcp/asset/4d8e8e0d-8128-43ec-b1bd-48348d3bf777" alt="">
                 </div>
                 <span class="chat-input-placeholder">Ask anything</span>
               </div>
               <div class="chat-input-right">
-                <div class="chat-input-btn">
+                <div class="chat-input-btn btn-mic">
                   <img src="https://www.figma.com/api/mcp/asset/1915b12a-2b1a-47c6-843f-a085c0b2572e" alt="">
                 </div>
                 <div class="chat-send-btn">
