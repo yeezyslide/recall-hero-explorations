@@ -898,43 +898,170 @@
       letter-spacing: -0.15px;
     }
 
-    /* ========== SECTION 2: PAIN CARDS ========== */
-    .section-reality {
+    /* ========== CONCEPT LABEL ========== */
+    .concept-label {
+      text-align: center;
+      padding: 20px 0 0;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #BCBFCC;
+    }
+
+    /* ========== CONCEPT 1: SLACK MESSAGES ========== */
+    .section-c1 {
       background: #F5F5F9;
     }
 
-    .pain-carousel-wrap {
+    .c1-messages {
       margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .c1-msg {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05);
+      display: flex;
+      gap: 14px;
+    }
+
+    .c1-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .c1-avatar.av1 { background: linear-gradient(135deg, #4874FF, #74CEFF); }
+    .c1-avatar.av2 { background: linear-gradient(135deg, #F97316, #FBBF24); }
+    .c1-avatar.av3 { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
+    .c1-avatar.av4 { background: linear-gradient(135deg, #10B981, #34D399); }
+
+    .c1-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .c1-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .c1-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #080E1C;
+    }
+
+    .c1-channel {
+      font-size: 11px;
+      font-weight: 500;
+      color: #4874FF;
+    }
+
+    .c1-time {
+      font-size: 11px;
+      font-weight: 400;
+      color: #BCBFCC;
+    }
+
+    .c1-quote {
+      font-size: 15px;
+      font-weight: 600;
+      color: #080E1C;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .c1-body {
+      font-size: 14px;
+      font-weight: 400;
+      color: #6E7180;
+      line-height: 1.55;
+    }
+
+    .c1-reactions {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .c1-reaction {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: #F5F5F9;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #6E7180;
+    }
+
+    /* ========== CONCEPT 2: STICKY NOTES ========== */
+    .section-c2 {
+      background: #F5F5F9;
       position: relative;
     }
 
-    .pain-carousel {
-      display: flex;
+    .c2-board {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 4px;
+      position: relative;
     }
 
-    .pain-carousel::-webkit-scrollbar {
-      display: none;
+    .c2-note {
+      padding: 28px 24px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(8, 14, 28, 0.06), 0 8px 24px rgba(8, 14, 28, 0.04);
+      position: relative;
+      transition: transform 0.3s ease;
     }
 
-    .pain-card {
-      flex: 0 0 calc(33.333% - 12px);
-      min-width: 300px;
-      background: #FFFFFF;
-      border-radius: 20px;
-      padding: 32px;
-      scroll-snap-align: start;
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05);
+    .c2-note:hover {
+      transform: translateY(-4px) rotate(0deg) !important;
     }
 
-    .pain-card-label {
-      font-size: 11px;
+    .c2-note.note1 { background: #FEF9E7; transform: rotate(-1.5deg); }
+    .c2-note.note2 { background: #EBF5FF; transform: rotate(0.8deg); }
+    .c2-note.note3 { background: #FDF2F8; transform: rotate(-0.5deg); }
+    .c2-note.note4 { background: #ECFDF5; transform: rotate(1.2deg); }
+
+    .c2-pin {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .note1 .c2-pin { background: #FBBF24; }
+    .note2 .c2-pin { background: #4874FF; }
+    .note3 .c2-pin { background: #EC4899; }
+    .note4 .c2-pin { background: #10B981; }
+
+    .c2-label {
+      font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -942,42 +1069,375 @@
       margin-bottom: 12px;
     }
 
-    .pain-card-quote {
+    .c2-quote {
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 700;
       color: #080E1C;
-      line-height: 1.3;
+      line-height: 1.25;
       letter-spacing: -0.4px;
       margin-bottom: 12px;
     }
 
-    .pain-card-body {
+    .c2-body {
+      font-size: 13px;
+      font-weight: 400;
+      color: #6E7180;
+      line-height: 1.55;
+    }
+
+    /* ========== CONCEPT 3: LARGE QUOTE WALL ========== */
+    .section-c3 {
+      background: #F5F5F9;
+    }
+
+    .c3-wall {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .c3-quote-block {
+      padding: 40px;
+      position: relative;
+      cursor: default;
+      border-bottom: 1px solid rgba(8, 14, 28, 0.05);
+    }
+
+    .c3-quote-block:nth-child(odd) {
+      border-right: 1px solid rgba(8, 14, 28, 0.05);
+    }
+
+    .c3-quote-block:nth-child(n+3) {
+      border-bottom: none;
+    }
+
+    .c3-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #BCBFCC;
+      margin-bottom: 16px;
+    }
+
+    .c3-big-quote {
+      font-size: 36px;
+      font-weight: 700;
+      color: #D3D6E0;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      transition: color 0.3s ease;
+      margin-bottom: 16px;
+    }
+
+    .c3-quote-block:hover .c3-big-quote {
+      color: #080E1C;
+    }
+
+    .c3-quote-block.active .c3-big-quote {
+      background: linear-gradient(90deg, #4874FF, #74CEFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .c3-body {
+      font-size: 14px;
+      font-weight: 400;
+      color: #9DA2B3;
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .c3-quote-block:hover .c3-body,
+    .c3-quote-block.active .c3-body {
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    .c3-quote-block.active .c3-body {
+      color: #6E7180;
+    }
+
+    /* ========== CONCEPT 4: CARD STACK ========== */
+    .section-c4 {
+      background: #F5F5F9;
+    }
+
+    .c4-container {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .c4-stack-area {
+      position: relative;
+      width: 380px;
+      height: 380px;
+      flex-shrink: 0;
+    }
+
+    .c4-card {
+      position: absolute;
+      width: 340px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05), 0 4px 24px rgba(8, 14, 28, 0.06);
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      left: 50%;
+      top: 50%;
+    }
+
+    .c4-card[data-pos="0"] {
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      z-index: 4;
+      opacity: 1;
+    }
+    .c4-card[data-pos="1"] {
+      transform: translate(-46%, -54%) rotate(3deg) scale(0.95);
+      z-index: 3;
+      opacity: 0.7;
+    }
+    .c4-card[data-pos="2"] {
+      transform: translate(-54%, -46%) rotate(-2deg) scale(0.9);
+      z-index: 2;
+      opacity: 0.45;
+    }
+    .c4-card[data-pos="3"] {
+      transform: translate(-50%, -42%) rotate(1deg) scale(0.85);
+      z-index: 1;
+      opacity: 0.2;
+    }
+
+    .c4-num {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .c4-quote {
+      font-size: 20px;
+      font-weight: 600;
+      color: #080E1C;
+      letter-spacing: -0.4px;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .c4-body {
       font-size: 14px;
       font-weight: 400;
       color: #6E7180;
       line-height: 1.6;
     }
 
-    .carousel-dots {
+    .c4-sidebar {
+      flex: 1;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       gap: 8px;
-      margin-top: 32px;
     }
 
-    .carousel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #D3D6E0;
-      border: none;
-      padding: 0;
+    .c4-tab {
+      padding: 16px 20px;
+      border-radius: 14px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.3s ease;
+      background: transparent;
     }
 
-    .carousel-dot.active {
+    .c4-tab.active {
+      background: #FFFFFF;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05), 0 2px 8px rgba(8, 14, 28, 0.04);
+    }
+
+    .c4-tab-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #BCBFCC;
+      margin-bottom: 4px;
+      transition: color 0.3s;
+    }
+
+    .c4-tab.active .c4-tab-label {
+      color: #4874FF;
+    }
+
+    .c4-tab-quote {
+      font-size: 15px;
+      font-weight: 600;
+      color: #9DA2B3;
+      letter-spacing: -0.2px;
+      transition: color 0.3s;
+    }
+
+    .c4-tab.active .c4-tab-quote {
+      color: #080E1C;
+    }
+
+    /* ========== CONCEPT 5: TERMINAL ========== */
+    .section-c5 {
       background: #080E1C;
+    }
+
+    .section-c5 .section-label { color: #9DA2B3; }
+    .section-c5 .section-headline { color: #FFFFFF; }
+    .section-c5 .section-sub { color: #9DA2B3; }
+
+    .c5-terminal {
+      margin-top: 48px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .c5-titlebar {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .c5-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .c5-dot.red { background: #FF5F57; }
+    .c5-dot.yellow { background: #FEBC2E; }
+    .c5-dot.green { background: #28C840; }
+
+    .c5-title {
+      flex: 1;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #6E7180;
+      letter-spacing: 0.3px;
+    }
+
+    .c5-body {
+      background: #0C1222;
+      padding: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .c5-entry {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .c5-entry:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .c5-entry-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .c5-timestamp {
+      color: #40424D;
+      font-size: 11px;
+    }
+
+    .c5-severity {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .c5-severity.warn {
+      color: #FBBF24;
+      background: rgba(251, 191, 36, 0.1);
+    }
+
+    .c5-severity.error {
+      color: #EF4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .c5-severity.crit {
+      color: #F97316;
+      background: rgba(249, 115, 22, 0.1);
+    }
+
+    .c5-tag {
+      font-size: 10px;
+      color: #4874FF;
+    }
+
+    .c5-quote-line {
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .c5-quote-line .hl {
+      color: #74CEFF;
+    }
+
+    .c5-desc {
+      color: #6E7180;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .c5-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 14px;
+      background: #4874FF;
+      margin-left: 4px;
+      animation: cursorBlink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    .c5-prompt {
+      color: #40424D;
+      margin-top: 16px;
+    }
+
+    .c5-prompt .hl { color: #4874FF; }
+
+    @keyframes cursorBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
     }
 
     /* ========== SECTION 3: PILLARS ========== */
@@ -2165,43 +2625,262 @@
     </div>
   </div>
 
-  <!-- ========== SECTION 2: SOUND FAMILIAR? ========== -->
-  <section class="section section-reality">
+  <!-- ========== CONCEPT 1: SLACK MESSAGES ========== -->
+  <div class="concept-label">Concept 1 — Slack Messages</div>
+  <section class="section section-c1">
     <div class="section-header">
       <span class="section-label">The reality today</span>
       <h2 class="section-headline">Sound familiar?</h2>
       <p class="section-sub">We've heard this from every enterprise we talk to.</p>
     </div>
 
-    <div class="pain-carousel-wrap">
-      <div class="pain-carousel" id="painCarousel">
-        <div class="pain-card">
-          <div class="pain-card-label">Tool Sprawl</div>
-          <div class="pain-card-quote">"I'm the only power user."</div>
-          <p class="pain-card-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+    <div class="c1-messages">
+      <div class="c1-msg">
+        <div class="c1-avatar av1">JM</div>
+        <div class="c1-content">
+          <div class="c1-meta">
+            <span class="c1-name">Jake M.</span>
+            <span class="c1-channel">#ai-strategy</span>
+            <span class="c1-time">2:34 PM</span>
+          </div>
+          <div class="c1-quote">"I'm the only power user."</div>
+          <p class="c1-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+          <div class="c1-reactions">
+            <span class="c1-reaction">😬 4</span>
+            <span class="c1-reaction">💯 7</span>
+          </div>
         </div>
-        <div class="pain-card">
-          <div class="pain-card-label">Model Fatigue</div>
-          <div class="pain-card-quote">"Not any AI — MY AI."</div>
-          <p class="pain-card-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+      </div>
+      <div class="c1-msg">
+        <div class="c1-avatar av2">SR</div>
+        <div class="c1-content">
+          <div class="c1-meta">
+            <span class="c1-name">Sarah R.</span>
+            <span class="c1-channel">#product-ops</span>
+            <span class="c1-time">3:12 PM</span>
+          </div>
+          <div class="c1-quote">"Not any AI — MY AI."</div>
+          <p class="c1-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+          <div class="c1-reactions">
+            <span class="c1-reaction">🎯 9</span>
+          </div>
         </div>
-        <div class="pain-card">
-          <div class="pain-card-label">No Flexibility</div>
-          <div class="pain-card-quote">"How do I future-proof this?"</div>
-          <p class="pain-card-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+      </div>
+      <div class="c1-msg">
+        <div class="c1-avatar av3">DK</div>
+        <div class="c1-content">
+          <div class="c1-meta">
+            <span class="c1-name">David K.</span>
+            <span class="c1-channel">#engineering</span>
+            <span class="c1-time">4:07 PM</span>
+          </div>
+          <div class="c1-quote">"How do I future-proof this?"</div>
+          <p class="c1-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+          <div class="c1-reactions">
+            <span class="c1-reaction">🔒 3</span>
+            <span class="c1-reaction">👆 5</span>
+          </div>
         </div>
-        <div class="pain-card">
-          <div class="pain-card-label">No Visibility</div>
-          <div class="pain-card-quote">"Who is doing what?"</div>
-          <p class="pain-card-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
+      </div>
+      <div class="c1-msg">
+        <div class="c1-avatar av4">LP</div>
+        <div class="c1-content">
+          <div class="c1-meta">
+            <span class="c1-name">Lisa P.</span>
+            <span class="c1-channel">#leadership</span>
+            <span class="c1-time">4:48 PM</span>
+          </div>
+          <div class="c1-quote">"Who is doing what?"</div>
+          <p class="c1-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
+          <div class="c1-reactions">
+            <span class="c1-reaction">😤 6</span>
+            <span class="c1-reaction">📊 2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT 2: STICKY NOTES ========== -->
+  <div class="concept-label">Concept 2 — Sticky Notes</div>
+  <section class="section section-c2">
+    <div class="section-header">
+      <span class="section-label">The reality today</span>
+      <h2 class="section-headline">Sound familiar?</h2>
+      <p class="section-sub">We've heard this from every enterprise we talk to.</p>
+    </div>
+
+    <div class="c2-board">
+      <div class="c2-note note1">
+        <div class="c2-pin"></div>
+        <div class="c2-label">Tool Sprawl</div>
+        <div class="c2-quote">"I'm the only power user."</div>
+        <p class="c2-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+      </div>
+      <div class="c2-note note2">
+        <div class="c2-pin"></div>
+        <div class="c2-label">Model Fatigue</div>
+        <div class="c2-quote">"Not any AI — MY AI."</div>
+        <p class="c2-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+      </div>
+      <div class="c2-note note3">
+        <div class="c2-pin"></div>
+        <div class="c2-label">No Flexibility</div>
+        <div class="c2-quote">"How do I future-proof this?"</div>
+        <p class="c2-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+      </div>
+      <div class="c2-note note4">
+        <div class="c2-pin"></div>
+        <div class="c2-label">No Visibility</div>
+        <div class="c2-quote">"Who is doing what?"</div>
+        <p class="c2-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT 3: LARGE QUOTE WALL ========== -->
+  <div class="concept-label">Concept 3 — Quote Wall</div>
+  <section class="section section-c3">
+    <div class="section-header">
+      <span class="section-label">The reality today</span>
+      <h2 class="section-headline">Sound familiar?</h2>
+      <p class="section-sub">We've heard this from every enterprise we talk to.</p>
+    </div>
+
+    <div class="c3-wall">
+      <div class="c3-quote-block active">
+        <div class="c3-label">Tool Sprawl</div>
+        <div class="c3-big-quote">"I'm the only power user."</div>
+        <p class="c3-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+      </div>
+      <div class="c3-quote-block">
+        <div class="c3-label">Model Fatigue</div>
+        <div class="c3-big-quote">"Not any AI — MY AI."</div>
+        <p class="c3-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+      </div>
+      <div class="c3-quote-block">
+        <div class="c3-label">No Flexibility</div>
+        <div class="c3-big-quote">"How do I future-proof this?"</div>
+        <p class="c3-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+      </div>
+      <div class="c3-quote-block">
+        <div class="c3-label">No Visibility</div>
+        <div class="c3-big-quote">"Who is doing what?"</div>
+        <p class="c3-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT 4: CARD STACK ========== -->
+  <div class="concept-label">Concept 4 — Card Stack</div>
+  <section class="section section-c4">
+    <div class="section-header">
+      <span class="section-label">The reality today</span>
+      <h2 class="section-headline">Sound familiar?</h2>
+      <p class="section-sub">We've heard this from every enterprise we talk to.</p>
+    </div>
+
+    <div class="c4-container">
+      <div class="c4-stack-area" id="c4Stack">
+        <div class="c4-card" data-pos="0" data-index="0">
+          <div class="c4-num">01</div>
+          <div class="c4-quote">"I'm the only power user."</div>
+          <p class="c4-body">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+        </div>
+        <div class="c4-card" data-pos="1" data-index="1">
+          <div class="c4-num">02</div>
+          <div class="c4-quote">"Not any AI — MY AI."</div>
+          <p class="c4-body">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+        </div>
+        <div class="c4-card" data-pos="2" data-index="2">
+          <div class="c4-num">03</div>
+          <div class="c4-quote">"How do I future-proof this?"</div>
+          <p class="c4-body">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+        </div>
+        <div class="c4-card" data-pos="3" data-index="3">
+          <div class="c4-num">04</div>
+          <div class="c4-quote">"Who is doing what?"</div>
+          <p class="c4-body">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
         </div>
       </div>
 
-      <div class="carousel-dots" id="carouselDots">
-        <button class="carousel-dot active" data-index="0" aria-label="Go to card 1"></button>
-        <button class="carousel-dot" data-index="1" aria-label="Go to card 2"></button>
-        <button class="carousel-dot" data-index="2" aria-label="Go to card 3"></button>
-        <button class="carousel-dot" data-index="3" aria-label="Go to card 4"></button>
+      <div class="c4-sidebar">
+        <div class="c4-tab active" data-index="0">
+          <div class="c4-tab-label">Tool Sprawl</div>
+          <div class="c4-tab-quote">"I'm the only power user."</div>
+        </div>
+        <div class="c4-tab" data-index="1">
+          <div class="c4-tab-label">Model Fatigue</div>
+          <div class="c4-tab-quote">"Not any AI — MY AI."</div>
+        </div>
+        <div class="c4-tab" data-index="2">
+          <div class="c4-tab-label">No Flexibility</div>
+          <div class="c4-tab-quote">"How do I future-proof this?"</div>
+        </div>
+        <div class="c4-tab" data-index="3">
+          <div class="c4-tab-label">No Visibility</div>
+          <div class="c4-tab-quote">"Who is doing what?"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT 5: TERMINAL ========== -->
+  <div class="concept-label">Concept 5 — Terminal</div>
+  <section class="section section-c5">
+    <div class="section-header">
+      <span class="section-label">The reality today</span>
+      <h2 class="section-headline">Sound familiar?</h2>
+      <p class="section-sub">We've heard this from every enterprise we talk to.</p>
+    </div>
+
+    <div class="c5-terminal">
+      <div class="c5-titlebar">
+        <div class="c5-dot red"></div>
+        <div class="c5-dot yellow"></div>
+        <div class="c5-dot green"></div>
+        <span class="c5-title">recall — ai-audit-log</span>
+      </div>
+      <div class="c5-body">
+        <div class="c5-entry">
+          <div class="c5-entry-header">
+            <span class="c5-timestamp">14:34:07</span>
+            <span class="c5-severity warn">WARN</span>
+            <span class="c5-tag">tool-sprawl</span>
+          </div>
+          <div class="c5-quote-line">"<span class="hl">I'm the only power user.</span>"</div>
+          <p class="c5-desc">One person carries AI productivity for the whole team. If they leave, so does the knowledge. That's not a strategy — it's a single point of failure.</p>
+        </div>
+        <div class="c5-entry">
+          <div class="c5-entry-header">
+            <span class="c5-timestamp">15:12:23</span>
+            <span class="c5-severity error">ERROR</span>
+            <span class="c5-tag">model-fatigue</span>
+          </div>
+          <div class="c5-quote-line">"<span class="hl">Not any AI — MY AI.</span>"</div>
+          <p class="c5-desc">Generic tools don't know your customers, your workflows, or your data. Without context, AI gives generic answers — and generic answers don't move the business.</p>
+        </div>
+        <div class="c5-entry">
+          <div class="c5-entry-header">
+            <span class="c5-timestamp">16:07:41</span>
+            <span class="c5-severity crit">CRIT</span>
+            <span class="c5-tag">vendor-lock</span>
+          </div>
+          <div class="c5-quote-line">"<span class="hl">How do I future-proof this?</span>"</div>
+          <p class="c5-desc">You picked a model today. A better one ships next month. If switching means rebuilding, you're not adopting AI — you're locked into a vendor.</p>
+        </div>
+        <div class="c5-entry">
+          <div class="c5-entry-header">
+            <span class="c5-timestamp">16:48:59</span>
+            <span class="c5-severity warn">WARN</span>
+            <span class="c5-tag">no-visibility</span>
+          </div>
+          <div class="c5-quote-line">"<span class="hl">Who is doing what?</span>"</div>
+          <p class="c5-desc">Dozens of teams, dozens of tools, no single view. You're asked to justify AI spend but can't tell who's using what — or whether it's working.</p>
+        </div>
+        <div class="c5-prompt">
+          <span class="hl">$</span> recall --resolve<span class="c5-cursor"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -2701,29 +3380,30 @@
   </footer>
 </div>
 
-<!-- Carousel JS -->
+<!-- Concept 4: Card Stack JS -->
 <script>
 (function() {
-  const carousel = document.getElementById('painCarousel');
-  const dots = document.querySelectorAll('#carouselDots .carousel-dot');
-  if (!carousel || !dots.length) return;
+  const cards = document.querySelectorAll('#c4Stack .c4-card');
+  const tabs = document.querySelectorAll('.c4-tab');
+  if (!cards.length) return;
 
-  // Click dot → scroll to card
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.dataset.index);
-      const card = carousel.children[idx];
-      if (card) carousel.scrollTo({ left: card.offsetLeft - carousel.offsetLeft, behavior: 'smooth' });
+  function setActive(idx) {
+    cards.forEach(c => {
+      const ci = parseInt(c.dataset.index);
+      const pos = (ci - idx + 4) % 4;
+      c.setAttribute('data-pos', pos);
     });
-  });
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
 
-  // Scroll → update active dot
-  carousel.addEventListener('scroll', () => {
-    const scrollLeft = carousel.scrollLeft;
-    const cardWidth = carousel.children[0].offsetWidth + 16; // gap
-    const active = Math.round(scrollLeft / cardWidth);
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
-  });
+  cards.forEach(c => c.addEventListener('click', () => {
+    const pos = parseInt(c.getAttribute('data-pos'));
+    if (pos !== 0) setActive(parseInt(c.dataset.index));
+  }));
+
+  tabs.forEach(t => t.addEventListener('click', () => {
+    setActive(parseInt(t.dataset.index));
+  }));
 })();
 </script>
 
