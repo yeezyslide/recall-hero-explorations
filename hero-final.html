@@ -6,7 +6,7 @@
   <title>Recall — Enterprise AI Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     /* ========== RESET ========== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1030,6 +1030,364 @@
       margin-top: 48px;
     }
 
+    /* ========== SECTION 3B: HOW IT WORKS (BENTO) ========== */
+    .section-howitworks {
+      background: #FFFFFF;
+    }
+
+    .hiw-label-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 17px;
+      background: #F5F5F5;
+      border: 1px solid #E5E5E5;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #6B7280;
+    }
+
+    .hiw-headline {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0A0A0A;
+      letter-spacing: -0.9px;
+      line-height: 1.1;
+      margin-top: 20px;
+    }
+
+    .hiw-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: #737373;
+      line-height: 1.5;
+      margin-top: 8px;
+      max-width: 540px;
+    }
+
+    .bento-grid {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bento-row {
+      display: grid;
+      gap: 16px;
+    }
+
+    .bento-row-top { grid-template-columns: 1fr 0.55fr; }
+    .bento-row-bottom { grid-template-columns: 0.55fr 1fr; }
+
+    .bento-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E5E5;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bento-card-visual {
+      background: rgba(245, 245, 245, 0.3);
+      border-bottom: 1px solid #E5E5E5;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .bento-card-visual.tall {
+      min-height: 320px;
+    }
+
+    .bento-card-text {
+      padding: 20px;
+    }
+
+    .bento-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0A0A0A;
+      letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+
+    .bento-card-title.large {
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .bento-card-copy {
+      font-size: 14px;
+      font-weight: 400;
+      color: #737373;
+      line-height: 1.6;
+    }
+
+    /* -- Connector visual (System Connectivity) -- */
+    .connector-visual {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .connector-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .connector-pill {
+      background: rgba(245, 245, 245, 0.8);
+      border: 1px solid #E5E5E5;
+      border-radius: 6px;
+      height: 29px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 400;
+      color: #737373;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+    }
+
+    .connector-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .connector-line {
+      width: 24px;
+      height: 1px;
+      background: #E5E5E5;
+    }
+
+    .connector-hub {
+      background: #FFFFFF;
+      border: 1px solid rgba(10, 10, 10, 0.2);
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      height: 34px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0A0A0A;
+    }
+
+    /* -- Model visual (Model Fluidity) -- */
+    .model-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .model-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(245, 245, 245, 0.8);
+      border: 1px solid #E5E5E5;
+      border-radius: 8px;
+      height: 42px;
+      padding: 0 12px;
+    }
+
+    .model-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0A0A0A;
+    }
+
+    .model-tag {
+      background: #FFFFFF;
+      border: 1px solid #E5E5E5;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 400;
+      color: #737373;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+    }
+
+    /* -- Memory visual (concentric circles) -- */
+    .memory-visual {
+      position: relative;
+      width: 256px;
+      height: 256px;
+    }
+
+    .memory-ring {
+      position: absolute;
+      border: 2px dashed rgba(10, 10, 10, 0.1);
+      border-radius: 9999px;
+    }
+
+    .memory-ring.outer {
+      inset: 0;
+    }
+
+    .memory-ring.middle {
+      top: 50%;
+      left: 50%;
+      width: 176px;
+      height: 176px;
+      transform: translate(-50%, -50%);
+      border-color: rgba(10, 10, 10, 0.2);
+    }
+
+    .memory-ring.inner {
+      top: 50%;
+      left: 50%;
+      width: 96px;
+      height: 96px;
+      transform: translate(-50%, -50%);
+      border: 2px solid rgba(10, 10, 10, 0.3);
+      background: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .memory-label {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: #737373;
+    }
+
+    .memory-label.lbl-org {
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .memory-label.lbl-team {
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .memory-label.lbl-individual {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #0A0A0A;
+    }
+
+    /* -- Security visual -- */
+    .security-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .security-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 245, 245, 0.8);
+      border: 1px solid #E5E5E5;
+      border-radius: 8px;
+      height: 38px;
+      padding: 0 12px;
+    }
+
+    .security-pill svg {
+      width: 12px;
+      height: 12px;
+      color: #737373;
+      flex-shrink: 0;
+    }
+
+    .security-pill span {
+      font-size: 12px;
+      font-weight: 500;
+      color: #0A0A0A;
+    }
+
+    /* -- Dashboard visual -- */
+    .dash-visual {
+      width: 100%;
+    }
+
+    .dash-tabs {
+      display: flex;
+      gap: 12px;
+      border-bottom: 1px solid #E5E5E5;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+    }
+
+    .dash-tabs span { color: #737373; }
+    .dash-tabs span.active { color: #0A0A0A; }
+
+    .dash-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+
+    .dash-bar {
+      flex: 1;
+      background: rgba(10, 10, 10, 0.1);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .dash-stats {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #E5E5E5;
+      padding-top: 12px;
+    }
+
+    .dash-stat {
+      text-align: center;
+    }
+
+    .dash-stat-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0A0A0A;
+      display: block;
+    }
+
+    .dash-stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #737373;
+    }
+
     /* ========== SECTION 4: OUTCOMES ========== */
     .section-outcomes {
       background: #F5F5F9;
@@ -1659,6 +2017,156 @@
         <img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">
         Get a Demo
       </a>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3B: HOW IT WORKS (BENTO) ========== -->
+  <section class="section section-howitworks">
+    <div class="section-header">
+      <span class="hiw-label-pill">How It Works</span>
+      <h2 class="hiw-headline">The deeper dive.</h2>
+      <p class="hiw-sub">For the technical evaluator or AI champion who wants to understand what Recall actually does.</p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Row 1: System Connectivity + Model Fluidity -->
+      <div class="bento-row bento-row-top">
+        <div class="bento-card">
+          <div class="bento-card-visual">
+            <div class="connector-visual">
+              <div class="connector-col">
+                <div class="connector-pill">AS/400</div>
+                <div class="connector-pill">COBOL</div>
+                <div class="connector-pill">Mainframe</div>
+              </div>
+              <div class="connector-center">
+                <div class="connector-line"></div>
+                <div class="connector-hub">Recall</div>
+                <div class="connector-line"></div>
+              </div>
+              <div class="connector-col">
+                <div class="connector-pill">REST API</div>
+                <div class="connector-pill">Salesforce</div>
+                <div class="connector-pill">Snowflake</div>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-text">
+            <div class="bento-card-title">Connect every system. Legacy and modern.</div>
+            <p class="bento-card-copy">AS/400, COBOL mainframes, modern APIs, databases, SaaS tools — Recall connects to all of them through a single connector layer.</p>
+          </div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-card-visual">
+            <div class="model-visual">
+              <div class="model-row">
+                <span class="model-name">Claude 3.5</span>
+                <span class="model-tag">Engineering</span>
+              </div>
+              <div class="model-row">
+                <span class="model-name">GPT-4</span>
+                <span class="model-tag">Sales</span>
+              </div>
+              <div class="model-row">
+                <span class="model-name">Private LLM</span>
+                <span class="model-tag">Legal</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-text">
+            <div class="bento-card-title">Your models. Your choice.</div>
+            <p class="bento-card-copy">Different teams need different models. Recall manages the complexity so you don't have to.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Memory (full width) -->
+      <div class="bento-card">
+        <div class="bento-card-visual tall">
+          <div class="memory-visual">
+            <div class="memory-ring outer"></div>
+            <span class="memory-label lbl-org">Organization</span>
+            <div class="memory-ring middle"></div>
+            <span class="memory-label lbl-team">Team</span>
+            <div class="memory-ring inner">
+              <span class="memory-label lbl-individual">Individual</span>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card-text">
+          <div class="bento-card-title large">AI that remembers.</div>
+          <p class="bento-card-copy">Three layers of persistent memory: individual preferences and history, team-level knowledge and patterns, and organization-wide context. The more your people use Recall, the smarter it gets. Context compounds over time.</p>
+        </div>
+      </div>
+
+      <!-- Row 3: Security + Visibility -->
+      <div class="bento-row bento-row-bottom">
+        <div class="bento-card">
+          <div class="bento-card-visual">
+            <div class="security-visual">
+              <div class="security-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>SOC 2</span>
+              </div>
+              <div class="security-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>RBAC</span>
+              </div>
+              <div class="security-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Audit Trail</span>
+              </div>
+              <div class="security-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Data Gov</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-text">
+            <div class="bento-card-title">Enterprise-grade. Day one.</div>
+            <p class="bento-card-copy">SOC 2 compliant, role-based access, data governance policies, and full audit trails baked into the architecture.</p>
+          </div>
+        </div>
+        <div class="bento-card">
+          <div class="bento-card-visual">
+            <div class="dash-visual">
+              <div class="dash-tabs">
+                <span class="active">Usage</span>
+                <span>Spend</span>
+                <span>Adoption</span>
+              </div>
+              <div class="dash-bars">
+                <div class="dash-bar" style="height:51%"></div>
+                <div class="dash-bar" style="height:61%"></div>
+                <div class="dash-bar" style="height:55%"></div>
+                <div class="dash-bar" style="height:67%"></div>
+                <div class="dash-bar" style="height:63%"></div>
+                <div class="dash-bar" style="height:71%"></div>
+                <div class="dash-bar" style="height:57%"></div>
+                <div class="dash-bar" style="height:69%"></div>
+              </div>
+              <div class="dash-stats">
+                <div class="dash-stat">
+                  <span class="dash-stat-value">2,847</span>
+                  <span class="dash-stat-label">Users</span>
+                </div>
+                <div class="dash-stat">
+                  <span class="dash-stat-value">$12.4k</span>
+                  <span class="dash-stat-label">Spend</span>
+                </div>
+                <div class="dash-stat">
+                  <span class="dash-stat-value">78%</span>
+                  <span class="dash-stat-label">Adoption</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-text">
+            <div class="bento-card-title">See everything.</div>
+            <p class="bento-card-copy">Usage, model performance, spend, adoption metrics — all in one admin dashboard. Know who's using what and where the value is.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
