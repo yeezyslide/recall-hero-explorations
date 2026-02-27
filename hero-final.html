@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recall — Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { background: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ========== HERO WRAPPER ========== */
+    .hero-wrapper {
+      padding: 16px;
+      background: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-container {
+      flex: 1;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+    }
+
+    /* ========== BACKGROUND LAYERS ========== */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .hero-bg-gradient {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(72, 116, 255, 0.15) 0%, rgba(72, 116, 255, 0) 40%),
+        linear-gradient(90deg, #F5F5F9 0%, #F5F5F9 100%);
+    }
+
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      opacity: 0.25;
+      background-image: url('https://www.figma.com/api/mcp/asset/c8a9f54e-25ce-4258-88a1-6035539024f1');
+      background-size: 50.42px 50.42px;
+      background-position: top left;
+    }
+
+    /* ========== GLOW ORB ========== */
+    .hero-glow {
+      position: absolute;
+      width: 884px;
+      height: 837px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 450px;
+      pointer-events: none;
+    }
+    .hero-glow img {
+      position: absolute;
+      inset: -59.74% -56.56%;
+      width: 219.48%;
+      height: 219.12%;
+      max-width: none;
+    }
+
+    /* ========== HEADER / NAV ========== */
+    .hero-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      z-index: 10;
+    }
+
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+      overflow: hidden;
+    }
+
+    .nav-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+    }
+
+    .nav-logo {
+      height: 20px;
+      width: auto;
+    }
+
+    .nav-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #080E1C;
+      letter-spacing: -0.13px;
+      white-space: nowrap;
+    }
+
+    .nav-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #D3D6E0;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 2px 16px;
+      border-radius: 10px;
+      background: linear-gradient(19deg, #4874FF 0%, #74CEFF 100%);
+      font-size: 13px;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+
+    /* ========== HERO CONTENT (CENTER) ========== */
+    .hero-content {
+      position: absolute;
+      top: 140px;
+      left: calc(50% - 10px);
+      transform: translateX(-50%);
+      width: 642px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      z-index: 5;
+    }
+
+    .hero-text-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    /* Badge */
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 10px 2px 2px;
+      background: #FFFFFF;
+      border: 0.5px solid rgba(8, 14, 28, 0.07);
+      border-radius: 10px;
+    }
+
+    .hero-badge-icon {
+      width: 32px;
+      height: 20px;
+      background: rgba(72, 116, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-badge-icon img {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-badge-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #080E1C;
+      line-height: 1;
+    }
+
+    /* Headline + Sub */
+    .hero-text-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-size: 47px;
+      font-weight: 600;
+      color: #080E1C;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+
+    .hero-headline .gradient-text {
+      background: linear-gradient(90deg, #4874FF 1.44%, #74CEFF 19.95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 500;
+      color: #43444E;
+      line-height: 1.5;
+      letter-spacing: -0.15px;
+      width: 586px;
+      text-align: center;
+    }
+
+    /* CTAs */
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 44px;
+      padding: 2px 16px 2px 12px;
+      border-radius: 12px;
+      background: linear-gradient(18deg, #4874FF 0%, #74CEFF 100%);
+      font-size: 15px;
+      font-weight: 500;
+      color: #FFFFFF;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .btn-primary-icon {
+      width: 19.75px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 8px 12px 16px;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-size: 15px;
+      font-weight: 500;
+      color: #080E1C;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-secondary-chevron {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    /* ========== BOTTOM ILLUSTRATION ========== */
+    .hero-illustration {
+      position: absolute;
+      bottom: 54px;
+      left: calc(50% - 9px);
+      transform: translateX(-50%);
+      width: 1038px;
+      height: 284px;
+      z-index: 5;
+    }
+
+    /* ---- Integration icons (left side) ---- */
+    .integration-item {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .integration-item.left {
+      flex-direction: row;
+    }
+
+    .integration-item.right {
+      flex-direction: row;
+    }
+
+    .integration-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #080E1C;
+      white-space: nowrap;
+    }
+
+    .integration-icon {
+      width: 36px;
+      height: 36px;
+      background: #FFFFFF;
+      border: 0.5px solid rgba(31, 36, 49, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .integration-icon img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .integration-icon.salesforce-icon img {
+      width: 26px;
+      height: 18px;
+    }
+
+    .integration-icon.hubspot-icon img {
+      width: 17px;
+      height: 18px;
+    }
+
+    /* Department icons (right side) */
+    .dept-icon {
+      width: 36px;
+      height: 36px;
+      background: #FFFFFF;
+      border: 0.5px solid rgba(31, 36, 49, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .dept-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Pill labels (Systems / Memory) */
+    .pill-label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px 2px 2px;
+      background: #FFFFFF;
+      border: 0.3px solid rgba(31, 36, 49, 0.15);
+      border-radius: 8px;
+    }
+
+    .pill-label-icon {
+      width: 18px;
+      height: 18px;
+      background: rgba(72, 116, 255, 0.15);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pill-label-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .pill-label-text {
+      font-size: 9px;
+      font-weight: 500;
+      color: #43444E;
+    }
+
+    /* ---- Connector dots ---- */
+    .connector-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 31px;
+      background: #4874FF;
+    }
+
+    /* ---- Central Chat Mockup ---- */
+    .chat-outer {
+      position: absolute;
+      left: 297px;
+      top: -4px;
+      width: 463px;
+      padding: 4px;
+      border: 0.5px dashed rgba(72, 116, 255, 0.35);
+      border-radius: 24px;
+    }
+
+    .chat-frame {
+      width: 100%;
+      height: 284px;
+      border-radius: 20px;
+      padding: 3.35px;
+      background: linear-gradient(50deg, #4874FF 0%, #74CEFF 99%);
+      box-shadow: 0 0 3.35px rgba(8, 14, 28, 0.1);
+      backdrop-filter: blur(13.4px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 3.35px;
+    }
+
+    .chat-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 6.7px;
+    }
+
+    .chat-dots {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 1.68px;
+    }
+
+    .chat-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #FFFFFF;
+    }
+
+    .chat-title-logo {
+      height: 10px;
+      width: auto;
+    }
+
+    .chat-dots-right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .chat-body {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.93);
+      border: 0.42px solid rgba(0, 0, 0, 0.1);
+      border-radius: 16.76px;
+      box-shadow: 0 0 3.35px rgba(8, 14, 28, 0.05);
+      padding: 13.4px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: 13.4px;
+    }
+
+    /* User message */
+    .chat-msg-user {
+      display: flex;
+      align-items: center;
+      gap: 6.7px;
+    }
+
+    .chat-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+      background: #BBBDC8;
+    }
+
+    .chat-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+    }
+
+    .chat-bubble-user {
+      flex: 1;
+      background: rgba(237, 237, 245, 0.75);
+      border: 0.42px solid rgba(31, 36, 49, 0.05);
+      border-radius: 10px;
+      padding: 8.38px;
+      font-size: 10.89px;
+      font-weight: 500;
+      color: #40424D;
+      line-height: 1.5;
+    }
+
+    /* AI message */
+    .chat-msg-ai {
+      display: flex;
+      align-items: flex-start;
+      gap: 6.7px;
+    }
+
+    .chat-avatar-ai {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #74CEFF 0%, #4874FF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-avatar-ai img {
+      width: 11.3px;
+      height: 9.4px;
+    }
+
+    .chat-bubble-ai {
+      flex: 1;
+      background: rgba(237, 237, 245, 0.75);
+      border: 0.42px solid rgba(31, 36, 49, 0.05);
+      border-radius: 10px;
+      padding: 8.38px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .chat-tools-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3.35px;
+      padding: 1.68px 6.7px 1.68px 1.68px;
+      background: rgba(31, 36, 49, 0.05);
+      border: 0.25px solid rgba(31, 36, 49, 0.05);
+      border-radius: 84px;
+    }
+
+    .chat-tools-icon {
+      width: 16.76px;
+      height: 16.76px;
+      background: #FFFFFF;
+      border-radius: 37.7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .chat-tools-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .chat-tools-text {
+      font-size: 9.22px;
+      font-weight: 500;
+      color: #6E7180;
+    }
+
+    .chat-ai-text {
+      font-size: 10.89px;
+      font-weight: 500;
+      color: #6F707E;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .chat-ai-text .highlight-link {
+      color: #4874FF;
+    }
+
+    .chat-ai-text .highlight-bold {
+      font-weight: 600;
+      color: #080E1C;
+    }
+
+    .chat-ai-text .highlight-bg {
+      background: rgba(72, 116, 255, 0.1);
+      border-radius: 3.35px;
+      padding: 1px 3px;
+    }
+
+    /* Chat input bar */
+    .chat-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 0.42px solid rgba(31, 36, 49, 0.07);
+      border-radius: 10px;
+      padding: 3.35px;
+      margin-top: auto;
+    }
+
+    .chat-input-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .chat-input-btn {
+      width: 23.46px;
+      height: 23.46px;
+      background: rgba(8, 14, 28, 0.05);
+      border-radius: 6.7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-input-btn img {
+      width: 23.66px;
+      height: 23.66px;
+    }
+
+    .chat-input-placeholder {
+      font-size: 9.22px;
+      font-weight: 400;
+      color: #7B879B;
+    }
+
+    .chat-input-right {
+      display: flex;
+      align-items: center;
+      gap: 1.68px;
+    }
+
+    .chat-send-btn {
+      width: 23.46px;
+      height: 23.46px;
+      background: #4874FF;
+      border-radius: 6.7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-send-btn img {
+      width: 23.66px;
+      height: 23.66px;
+    }
+
+    /* ---- Central orb ---- */
+    .central-orb {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -26px;
+      width: 58px;
+      height: 58px;
+      z-index: 10;
+    }
+
+    .orb-ring-outer {
+      position: absolute;
+      inset: 0;
+      border: 1px solid #E0F0F9;
+      border-radius: 999px;
+    }
+
+    .orb-ring-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border: 1px solid #CFE9F7;
+      border-radius: 9999px;
+    }
+
+    .orb-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, #4874FF 49.5%, #5EA1FF 74.8%, #74CEFF 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .orb-core img {
+      width: 28.8px;
+      height: 26.4px;
+    }
+
+    /* ========== POSITIONS FOR INTEGRATIONS ========== */
+    .int-slack { left: 92px; top: 4px; }
+    .int-slack .integration-label { order: -1; }
+    .int-salesforce { left: 0; top: 84px; }
+    .int-salesforce .integration-label { order: -1; }
+    .int-notion { left: 21px; top: 164px; }
+    .int-notion .integration-label { order: -1; }
+    .int-hubspot { left: 74px; top: 244px; }
+    .int-hubspot .integration-label { order: -1; }
+
+    .dept-marketing { left: 889px; top: 4px; width: 97px; }
+    .dept-sales { left: 953px; top: 84px; }
+    .dept-finance { left: 953px; top: 164px; }
+    .dept-executive { left: 889px; top: 244px; width: 97px; }
+
+    .pill-systems { left: 212px; }
+    .pill-memory { left: 776px; }
+
+    /* ---- Connector dot positions ---- */
+    .cd-1 { left: 101px; top: 100px; }
+    .cd-2 { left: 165px; top: 20px; }
+    .cd-3 { left: 101px; top: 180px; }
+    .cd-4 { left: 165px; top: 260px; }
+    .cd-5 { left: 207px; top: 140px; }
+    .cd-6 { left: 280px; top: 140px; }
+    .cd-7 { left: 295px; top: 140px; }
+    /* right-side dots */
+    .cd-8  { left: calc(50% + 241px); top: calc(50% - 2px); }
+    .cd-9  { left: calc(50% + 254px); top: calc(50% - 2px); }
+    .cd-10 { left: calc(50% + 326px); top: calc(50% - 2px); }
+    .cd-11 { left: calc(50% + 366px); top: calc(50% - 122px); }
+    .cd-12 { left: calc(50% + 366px); top: calc(50% + 118px); }
+    .cd-13 { left: calc(50% + 431px); top: calc(50% + 38px); }
+    .cd-14 { left: calc(50% + 431px); top: calc(50% - 42px); }
+  </style>
+</head>
+<body>
+
+<div class="hero-wrapper">
+  <div class="hero-container">
+
+    <!-- Background layers -->
+    <div class="hero-bg">
+      <div class="hero-bg-gradient"></div>
+      <div class="hero-bg-grid"></div>
+    </div>
+
+    <!-- Glow orb -->
+    <div class="hero-glow">
+      <img src="https://www.figma.com/api/mcp/asset/a2f76806-59a1-4ac2-8ba1-cf59d7967c33" alt="" aria-hidden="true">
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="hero-header">
+      <nav class="hero-nav">
+        <div class="nav-left">
+          <img class="nav-logo" src="https://www.figma.com/api/mcp/asset/77bee267-f81a-42ad-9513-50b6372ed73b" alt="Recall">
+        </div>
+        <div class="nav-center">
+          <a href="#" class="nav-link">Product</a>
+          <span class="nav-dot"></span>
+          <a href="#" class="nav-link">Solutions</a>
+          <span class="nav-dot"></span>
+          <a href="#" class="nav-link">About</a>
+          <span class="nav-dot"></span>
+          <a href="#" class="nav-link">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a href="#" class="nav-cta">Get a Demo</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <div class="hero-text-group">
+        <!-- Badge -->
+        <div class="hero-badge">
+          <div class="hero-badge-icon">
+            <img src="https://www.figma.com/api/mcp/asset/da5c0b6d-e53a-4894-aef9-7cb13c18aaad" alt="">
+          </div>
+          <span class="hero-badge-text">Enterprise AI Platform</span>
+        </div>
+
+        <!-- Headline + Sub -->
+        <div class="hero-text-inner">
+          <h1 class="hero-headline">
+            Every org has AI power users.<br>
+            <span class="gradient-text">Recall</span> makes everyone one.
+          </h1>
+          <p class="hero-sub">A handful of people get 10x results from AI while the rest barely scratch the surface. The gap isn't intelligence, it's tooling, context, and access.</p>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">
+          <img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">
+          Get a Demo
+        </a>
+        <a href="#" class="btn-secondary">
+          See How It Works
+          <svg class="btn-secondary-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 6l6 6-6 6" stroke="#080E1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Illustration -->
+    <div class="hero-illustration">
+
+      <!-- Left integrations -->
+      <div class="integration-item left int-slack">
+        <span class="integration-label">Slack</span>
+        <div class="integration-icon">
+          <img src="https://www.figma.com/api/mcp/asset/7d7a1aa5-61d0-4b4c-b6d2-a2facb50c32c" alt="Slack">
+        </div>
+      </div>
+      <div class="integration-item left int-salesforce">
+        <span class="integration-label">Salesforce</span>
+        <div class="integration-icon salesforce-icon">
+          <img src="https://www.figma.com/api/mcp/asset/afa31b20-0b08-4423-a235-d5365dacce3e" alt="Salesforce">
+        </div>
+      </div>
+      <div class="integration-item left int-notion">
+        <span class="integration-label">Notion</span>
+        <div class="integration-icon">
+          <img src="https://www.figma.com/api/mcp/asset/05848c35-e332-4b15-b3cd-57270c88b129" alt="Notion">
+        </div>
+      </div>
+      <div class="integration-item left int-hubspot">
+        <span class="integration-label">HubSpot</span>
+        <div class="integration-icon hubspot-icon">
+          <img src="https://www.figma.com/api/mcp/asset/168b4329-481c-4668-9b1a-d1e6cf5eea4e" alt="HubSpot">
+        </div>
+      </div>
+
+      <!-- Systems pill -->
+      <div class="pill-label pill-systems">
+        <div class="pill-label-icon">
+          <img src="https://www.figma.com/api/mcp/asset/17d99dc2-eb51-4ec8-92df-fe649c9288bd" alt="">
+        </div>
+        <span class="pill-label-text">Systems</span>
+      </div>
+
+      <!-- Memory pill -->
+      <div class="pill-label pill-memory">
+        <div class="pill-label-icon">
+          <img src="https://www.figma.com/api/mcp/asset/ae31a5ec-f9be-4982-b6c7-8ffbb46320d1" alt="">
+        </div>
+        <span class="pill-label-text">Memory</span>
+      </div>
+
+      <!-- Right departments -->
+      <div class="integration-item right dept-marketing">
+        <div class="dept-icon">
+          <img src="https://www.figma.com/api/mcp/asset/620815f8-e5e0-47e3-bbcb-303fff852e7b" alt="">
+        </div>
+        <span class="integration-label">Marketing</span>
+      </div>
+      <div class="integration-item right dept-sales">
+        <div class="dept-icon">
+          <img src="https://www.figma.com/api/mcp/asset/620815f8-e5e0-47e3-bbcb-303fff852e7b" alt="">
+        </div>
+        <span class="integration-label">Sales</span>
+      </div>
+      <div class="integration-item right dept-finance">
+        <div class="dept-icon">
+          <img src="https://www.figma.com/api/mcp/asset/620815f8-e5e0-47e3-bbcb-303fff852e7b" alt="">
+        </div>
+        <span class="integration-label">Finance</span>
+      </div>
+      <div class="integration-item right dept-executive">
+        <div class="dept-icon">
+          <img src="https://www.figma.com/api/mcp/asset/620815f8-e5e0-47e3-bbcb-303fff852e7b" alt="">
+        </div>
+        <span class="integration-label">Executive</span>
+      </div>
+
+      <!-- Connector dots (left side) -->
+      <div class="connector-dot cd-1"></div>
+      <div class="connector-dot cd-2"></div>
+      <div class="connector-dot cd-3"></div>
+      <div class="connector-dot cd-4"></div>
+      <div class="connector-dot cd-5"></div>
+      <div class="connector-dot cd-6"></div>
+      <div class="connector-dot cd-7"></div>
+      <!-- Connector dots (right side) -->
+      <div class="connector-dot cd-8"></div>
+      <div class="connector-dot cd-9"></div>
+      <div class="connector-dot cd-10"></div>
+      <div class="connector-dot cd-11"></div>
+      <div class="connector-dot cd-12"></div>
+      <div class="connector-dot cd-13"></div>
+      <div class="connector-dot cd-14"></div>
+
+      <!-- Central Chat Mockup -->
+      <div class="chat-outer">
+        <div class="chat-frame">
+          <!-- Title bar -->
+          <div class="chat-titlebar">
+            <div class="chat-dots">
+              <div class="chat-dot"></div>
+              <div class="chat-dot"></div>
+              <div class="chat-dot"></div>
+            </div>
+            <img class="chat-title-logo" src="https://www.figma.com/api/mcp/asset/95eea6a2-f190-46d7-8079-062e6302cded" alt="recall">
+            <div class="chat-dots-right"></div>
+          </div>
+
+          <!-- Chat body -->
+          <div class="chat-body">
+            <div class="chat-messages">
+              <!-- User message -->
+              <div class="chat-msg-user">
+                <div class="chat-avatar">
+                  <img src="https://www.figma.com/api/mcp/asset/2ef9872d-5a4e-4a76-aab7-971fea7b46d8" alt="">
+                </div>
+                <div class="chat-bubble-user">What were the key takeaways from last quarter's pipeline review?</div>
+              </div>
+
+              <!-- AI response -->
+              <div class="chat-msg-ai">
+                <div class="chat-avatar-ai">
+                  <img src="https://www.figma.com/api/mcp/asset/5f6a1294-3469-4512-980e-24999faf7202" alt="">
+                </div>
+                <div class="chat-bubble-ai">
+                  <div class="chat-tools-pill">
+                    <div class="chat-tools-icon">
+                      <img src="https://www.figma.com/api/mcp/asset/da52f417-f9ef-4c26-9f93-c2b0f8838889" alt="">
+                    </div>
+                    <span class="chat-tools-text">5 systems connected</span>
+                  </div>
+                  <div class="chat-ai-text">
+                    Based on the Q4 pipeline review discussed in <span class="highlight-link">#sales-leadership</span> and synced with Salesforce data, three key themes emerged: <span class="highlight-bold"><span class="highlight-bg">Enterprise deal velocity improved 34%</span></span> after implementing the new qualification framework, mid-market churn risk was flagged across 12 accounts, and the team agreed to prioritize vertical-specific messaging for Q1.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Input bar -->
+            <div class="chat-input">
+              <div class="chat-input-left">
+                <div class="chat-input-btn">
+                  <img src="https://www.figma.com/api/mcp/asset/4d8e8e0d-8128-43ec-b1bd-48348d3bf777" alt="">
+                </div>
+                <span class="chat-input-placeholder">Ask anything</span>
+              </div>
+              <div class="chat-input-right">
+                <div class="chat-input-btn">
+                  <img src="https://www.figma.com/api/mcp/asset/1915b12a-2b1a-47c6-843f-a085c0b2572e" alt="">
+                </div>
+                <div class="chat-send-btn">
+                  <img src="https://www.figma.com/api/mcp/asset/644b89b2-5c0c-4533-8f31-f09dba25dab2" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Central orb -->
+      <div class="central-orb">
+        <div class="orb-ring-outer"></div>
+        <div class="orb-ring-inner">
+          <div class="orb-core">
+            <img src="https://www.figma.com/api/mcp/asset/f4b4adf3-2f8a-462c-8e6c-546a52099235" alt="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
