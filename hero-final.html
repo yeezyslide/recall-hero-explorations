@@ -1440,56 +1440,951 @@
       51%, 100% { opacity: 0; }
     }
 
-    /* ========== SECTION 3: PILLARS ========== */
-    .section-pillars {
-      background: #FFFFFF;
-    }
+    /* ========== CONCEPT P1: ICON CARDS WITH ANIMATED ILLUSTRATIONS ========== */
+    .section-p1 { background: #FFFFFF; }
 
-    .pillars-grid {
+    .p1-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
       margin-top: 48px;
     }
 
-    .pillar-card {
-      background: #F5F5F9;
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .p1-grid .p1-card:nth-child(4),
+    .p1-grid .p1-card:nth-child(5) {
+      /* last row: 2 cards centered */
     }
 
-    .pillar-icon {
-      width: 40px;
-      height: 40px;
-      background: #FFFFFF;
-      border-radius: 12px;
+    .p1-row-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+      max-width: 66.666%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .p1-card {
+      background: #F5F5F9;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.04);
+    }
+
+    .p1-card-visual {
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05);
+      position: relative;
+      overflow: hidden;
     }
 
-    .pillar-icon svg {
-      width: 20px;
-      height: 20px;
-      color: #4874FF;
+    .p1-card-text {
+      padding: 24px;
     }
 
-    .pillar-title {
-      font-size: 15px;
+    .p1-card-title {
+      font-size: 16px;
       font-weight: 600;
       color: #080E1C;
-      letter-spacing: -0.15px;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
     }
 
-    .pillar-copy {
+    .p1-card-copy {
       font-size: 13px;
       font-weight: 400;
       color: #6E7180;
-      line-height: 1.5;
+      line-height: 1.55;
+    }
+
+    /* P1 — Framework: hub + spoke */
+    .p1-hub {
+      position: relative;
+      width: 160px;
+      height: 160px;
+    }
+
+    .p1-hub-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      box-shadow: 0 4px 16px rgba(72, 116, 255, 0.25);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .p1-hub-center svg { width: 22px; height: 22px; color: #FFFFFF; }
+
+    .p1-spoke {
+      position: absolute;
+      width: 32px; height: 32px;
+      background: #FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 6px rgba(8, 14, 28, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p1-spoke svg { width: 14px; height: 14px; color: #6E7180; }
+
+    .p1-spoke:nth-child(2) { top: 4px; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3.5s ease-in-out infinite; }
+    .p1-spoke:nth-child(3) { bottom: 4px; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3.5s ease-in-out infinite 0.5s; }
+    .p1-spoke:nth-child(4) { left: 4px; top: 50%; transform: translateY(-50%); animation: floatUpSlow 4s ease-in-out infinite 1s; }
+    .p1-spoke:nth-child(5) { right: 4px; top: 50%; transform: translateY(-50%); animation: floatUpSlow 4s ease-in-out infinite 1.5s; }
+
+    .p1-spoke-line {
+      position: absolute;
+      background: linear-gradient(to bottom, rgba(72,116,255,0.15), transparent);
+      width: 1px;
+      height: 20px;
+    }
+
+    /* P1 — Fluidity: swapping layers */
+    .p1-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 140px;
+    }
+
+    .p1-layer {
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+      animation: fadeInScale 0.5s ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .p1-layer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 60%, rgba(255,255,255,0.15));
+    }
+
+    .p1-layer:nth-child(1) { background: linear-gradient(90deg, #4874FF, #5E8FFF); animation-delay: 0s; }
+    .p1-layer:nth-child(2) { background: linear-gradient(90deg, #10B981, #34D399); animation-delay: 0.12s; }
+    .p1-layer:nth-child(3) { background: linear-gradient(90deg, #8B5CF6, #A78BFA); animation-delay: 0.24s; }
+
+    .p1-layer-swap {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      opacity: 0.6;
+    }
+
+    /* P1 — Memory: pulse rings */
+    .p1-memory {
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+
+    .p1-mem-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(72, 116, 255, 0.15);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .p1-mem-ring.r1 { width: 140px; height: 140px; animation: memPulse 3s ease-in-out infinite; }
+    .p1-mem-ring.r2 { width: 100px; height: 100px; border-color: rgba(72, 116, 255, 0.25); animation: memPulse 3s ease-in-out infinite 0.3s; }
+    .p1-mem-ring.r3 { width: 60px; height: 60px; border-color: rgba(72, 116, 255, 0.4); animation: memPulse 3s ease-in-out infinite 0.6s; }
+
+    .p1-mem-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      box-shadow: 0 0 20px rgba(72, 116, 255, 0.3);
+    }
+
+    @keyframes memPulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+    }
+
+    /* P1 — Connectivity: animated plugs */
+    .p1-connect {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p1-plug {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: #6E7180;
+      font-weight: 600;
+    }
+
+    .p1-connect-line {
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #4874FF, #74CEFF);
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .p1-connect-line::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 100%;
+      background: rgba(255,255,255,0.6);
+      border-radius: 1px;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -8px; }
+      100% { left: 40px; }
+    }
+
+    .p1-plug-hub {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(72, 116, 255, 0.2);
+    }
+
+    .p1-plug-hub svg { width: 16px; height: 16px; color: #FFFFFF; }
+
+    /* P1 — Security: shield float */
+    .p1-security {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p1-shield {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(72, 116, 255, 0.2);
+      animation: floatUp 3s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .p1-shield svg { width: 24px; height: 24px; color: #FFFFFF; }
+
+    .p1-sec-tag {
+      position: absolute;
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #080E1C;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 6px rgba(8, 14, 28, 0.04);
+      white-space: nowrap;
+    }
+
+    .p1-sec-tag:nth-of-type(1) { top: 8px; left: 0; animation: floatUpSlow 4s ease-in-out infinite 0s; }
+    .p1-sec-tag:nth-of-type(2) { top: 8px; right: 0; animation: floatUpSlow 4s ease-in-out infinite 0.5s; }
+    .p1-sec-tag:nth-of-type(3) { bottom: 8px; left: 4px; animation: floatUpSlow 4s ease-in-out infinite 1s; }
+    .p1-sec-tag:nth-of-type(4) { bottom: 8px; right: 4px; animation: floatUpSlow 4s ease-in-out infinite 1.5s; }
+
+    /* ========== CONCEPT P2: HORIZONTAL SCROLL FEATURE STRIP ========== */
+    .section-p2 { background: #FFFFFF; }
+
+    .p2-strip {
+      margin-top: 48px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+
+    .p2-strip::-webkit-scrollbar { display: none; }
+
+    .p2-feature {
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #F5F5F9;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p2-feature-visual {
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .p2-feature-text {
+      padding: 24px;
+    }
+
+    .p2-feature-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: #4874FF;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .p2-feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #080E1C;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+
+    .p2-feature-copy {
+      font-size: 13px;
+      font-weight: 400;
+      color: #6E7180;
+      line-height: 1.55;
+    }
+
+    /* P2 visuals */
+    .p2-framework-visual {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 6px;
+      width: 160px;
+      height: 160px;
+    }
+
+    .p2-fw-cell {
+      background: #FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInScale 0.4s ease-out both;
+    }
+
+    .p2-fw-cell:nth-child(1) { animation-delay: 0s; }
+    .p2-fw-cell:nth-child(2) { animation-delay: 0.05s; }
+    .p2-fw-cell:nth-child(3) { animation-delay: 0.1s; }
+    .p2-fw-cell:nth-child(4) { animation-delay: 0.15s; }
+    .p2-fw-cell:nth-child(5) { animation-delay: 0.2s; grid-column: 2; grid-row: 2; background: linear-gradient(135deg, #4874FF, #74CEFF); box-shadow: 0 4px 12px rgba(72, 116, 255, 0.2); }
+    .p2-fw-cell:nth-child(6) { animation-delay: 0.25s; }
+    .p2-fw-cell:nth-child(7) { animation-delay: 0.3s; }
+    .p2-fw-cell:nth-child(8) { animation-delay: 0.35s; }
+    .p2-fw-cell:nth-child(9) { animation-delay: 0.4s; }
+
+    .p2-fw-cell svg { width: 16px; height: 16px; color: #9DA2B3; }
+    .p2-fw-cell:nth-child(5) svg { color: #FFFFFF; }
+
+    /* P2 model carousel */
+    .p2-model-carousel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 200px;
+    }
+
+    .p2-model-slot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07);
+      transition: all 0.3s ease;
+    }
+
+    .p2-model-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .p2-model-slot:nth-child(1) .p2-model-dot { background: #4874FF; }
+    .p2-model-slot:nth-child(2) .p2-model-dot { background: #10B981; }
+    .p2-model-slot:nth-child(3) .p2-model-dot { background: #F97316; }
+
+    .p2-model-info { flex: 1; }
+
+    .p2-model-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #080E1C;
+      display: block;
+    }
+
+    .p2-model-dept {
+      font-size: 10px;
+      font-weight: 500;
+      color: #9DA2B3;
+    }
+
+    .p2-model-swap {
+      font-size: 9px;
+      color: #4874FF;
+      font-weight: 600;
+    }
+
+    /* P2 memory wave */
+    .p2-wave-container {
+      width: 200px;
+      height: 160px;
+      position: relative;
+    }
+
+    .p2-wave-line {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .p2-wave-line.w1 { stroke: rgba(72, 116, 255, 0.15); }
+    .p2-wave-line.w2 { stroke: rgba(72, 116, 255, 0.3); }
+    .p2-wave-line.w3 { stroke: #4874FF; }
+
+    .p2-wave-dot {
+      fill: #4874FF;
+      filter: drop-shadow(0 0 4px rgba(72, 116, 255, 0.4));
+    }
+
+    @keyframes waveMove {
+      0% { d: path("M0 80 Q50 40 100 80 T200 80"); }
+      50% { d: path("M0 80 Q50 120 100 80 T200 80"); }
+      100% { d: path("M0 80 Q50 40 100 80 T200 80"); }
+    }
+
+    /* P2 connectivity nodes */
+    .p2-nodes {
+      position: relative;
+      width: 180px;
+      height: 160px;
+    }
+
+    .p2-node {
+      position: absolute;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 2px 6px rgba(8, 14, 28, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      color: #6E7180;
+      font-weight: 600;
+    }
+
+    .p2-node.center {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      color: #FFFFFF;
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      box-shadow: 0 4px 16px rgba(72, 116, 255, 0.25);
+      border-radius: 12px;
+      z-index: 2;
+    }
+
+    .p2-node:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3s ease-in-out infinite; }
+    .p2-node:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); animation: floatUpSlow 3s ease-in-out infinite 0.4s; }
+    .p2-node:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); animation: floatUpSlow 3s ease-in-out infinite 0.8s; }
+    .p2-node:nth-child(4) { top: 50%; left: 0; transform: translateY(-50%); animation: floatUpSlow 3s ease-in-out infinite 1.2s; }
+    .p2-node.center { top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulseGlow 3s ease-in-out infinite; }
+
+    /* P2 security scan */
+    .p2-scan {
+      width: 160px;
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p2-scan-ring {
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(72, 116, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .p2-scan-sweep {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0deg, rgba(72, 116, 255, 0.12) 60deg, transparent 120deg);
+      animation: spinSlow 4s linear infinite;
+    }
+
+    .p2-scan-center {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.07), 0 4px 12px rgba(8, 14, 28, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .p2-scan-center svg { width: 24px; height: 24px; color: #4874FF; }
+
+    .p2-scan-blip {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4874FF;
+      box-shadow: 0 0 8px rgba(72, 116, 255, 0.4);
+    }
+
+    .p2-scan-blip:nth-child(4) { top: 20px; left: 60px; animation: pulseGlow 2s ease-in-out infinite; }
+    .p2-scan-blip:nth-child(5) { top: 70px; right: 15px; animation: pulseGlow 2s ease-in-out infinite 0.5s; }
+    .p2-scan-blip:nth-child(6) { bottom: 30px; left: 25px; animation: pulseGlow 2s ease-in-out infinite 1s; }
+
+    /* ========== CONCEPT P3: ACCORDION WITH LIVE PREVIEWS ========== */
+    .section-p3 { background: #FFFFFF; }
+
+    .p3-container {
+      margin-top: 48px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .p3-accordion {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .p3-item {
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.3s;
+      background: #F5F5F9;
+    }
+
+    .p3-item.active {
+      background: #F5F5F9;
+    }
+
+    .p3-item-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    .p3-item-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.05);
+      transition: all 0.3s;
+    }
+
+    .p3-item.active .p3-item-icon {
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      box-shadow: 0 2px 8px rgba(72, 116, 255, 0.2);
+    }
+
+    .p3-item-icon svg { width: 16px; height: 16px; color: #6E7180; transition: color 0.3s; }
+    .p3-item.active .p3-item-icon svg { color: #FFFFFF; }
+
+    .p3-item-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #080E1C;
+      letter-spacing: -0.2px;
+    }
+
+    .p3-item-chevron {
+      margin-left: auto;
+      width: 20px; height: 20px;
+      color: #BCBFCC;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .p3-item.active .p3-item-chevron {
+      transform: rotate(180deg);
+      color: #4874FF;
+    }
+
+    .p3-item-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .p3-item.active .p3-item-body {
+      max-height: 80px;
+    }
+
+    .p3-item-copy {
+      padding: 0 20px 18px 70px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #6E7180;
+      line-height: 1.55;
+    }
+
+    .p3-preview {
+      flex: 1;
+      height: 420px;
+      border-radius: 20px;
+      background: #F5F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 0.5px rgba(8, 14, 28, 0.04);
+    }
+
+    .p3-preview-panel {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .p3-preview-panel.active {
+      display: flex;
+    }
+
+    /* ========== CONCEPT P4: DARK FEATURE SHOWCASE ========== */
+    .section-p4 {
+      background: #080E1C;
+    }
+
+    .section-p4 .section-label { color: #9DA2B3; }
+    .section-p4 .section-headline { color: #FFFFFF; }
+    .section-p4 .section-sub { color: #9DA2B3; }
+
+    .p4-features {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .p4-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .p4-feature:nth-child(even) .p4-feature-visual {
+      order: -1;
+    }
+
+    .p4-feature-text {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .p4-feature-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      background: linear-gradient(90deg, #4874FF, #74CEFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .p4-feature-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .p4-feature-copy {
+      font-size: 14px;
+      font-weight: 400;
+      color: #9DA2B3;
+      line-height: 1.6;
+    }
+
+    .p4-feature-visual {
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-left: 0.5px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .p4-feature:nth-child(even) .p4-feature-visual {
+      border-left: none;
+      border-right: 0.5px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* P4 dark visuals */
+    .p4-dark-hub {
+      position: relative;
+      width: 180px; height: 180px;
+    }
+
+    .p4-dark-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      box-shadow: 0 0 40px rgba(72, 116, 255, 0.3);
+      z-index: 2;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .p4-dark-orbit {
+      position: absolute;
+      inset: 0;
+      border: 1px dashed rgba(72, 116, 255, 0.15);
+      border-radius: 50%;
+      animation: spinSlow 30s linear infinite;
+    }
+
+    .p4-dark-node {
+      position: absolute;
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #9DA2B3;
+      font-weight: 600;
+    }
+
+    .p4-dark-node:nth-child(2) { top: -14px; left: 50%; transform: translateX(-50%); }
+    .p4-dark-node:nth-child(3) { right: -14px; top: 50%; transform: translateY(-50%); }
+    .p4-dark-node:nth-child(4) { bottom: -14px; left: 50%; transform: translateX(-50%); }
+    .p4-dark-node:nth-child(5) { left: -14px; top: 50%; transform: translateY(-50%); }
+
+    /* P4 fluidity bars */
+    .p4-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 200px;
+    }
+
+    .p4-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .p4-bar-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #9DA2B3;
+      width: 56px;
+      flex-shrink: 0;
+    }
+
+    .p4-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .p4-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      animation: barGrow 1s ease-out both;
+      transform-origin: left;
+    }
+
+    .p4-bar:nth-child(1) .p4-bar-fill { width: 85%; background: linear-gradient(90deg, #4874FF, #74CEFF); animation-delay: 0s; }
+    .p4-bar:nth-child(2) .p4-bar-fill { width: 60%; background: linear-gradient(90deg, #10B981, #34D399); animation-delay: 0.15s; }
+    .p4-bar:nth-child(3) .p4-bar-fill { width: 45%; background: linear-gradient(90deg, #8B5CF6, #A78BFA); animation-delay: 0.3s; }
+
+    /* P4 dark memory */
+    .p4-dark-memory {
+      position: relative;
+      width: 180px; height: 180px;
+    }
+
+    .p4-mem-ring-dark {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(72, 116, 255, 0.1);
+    }
+
+    .p4-mem-ring-dark.r1 { width: 180px; height: 180px; }
+    .p4-mem-ring-dark.r2 { width: 120px; height: 120px; border-color: rgba(72, 116, 255, 0.2); }
+
+    .p4-mem-ring-dark.r1::after,
+    .p4-mem-ring-dark.r2::after {
+      content: '';
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4874FF;
+      box-shadow: 0 0 10px rgba(72, 116, 255, 0.5);
+      top: -3px; left: 50%;
+    }
+
+    .p4-mem-ring-dark.r1 { animation: spinSlow 20s linear infinite; }
+    .p4-mem-ring-dark.r2 { animation: spinSlow 14s linear infinite reverse; }
+
+    .p4-mem-core-dark {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4874FF, #74CEFF);
+      box-shadow: 0 0 30px rgba(72, 116, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p4-mem-core-dark svg { width: 24px; height: 24px; color: #FFFFFF; }
+
+    /* P4 connect mesh */
+    .p4-mesh {
+      width: 200px; height: 160px;
+      position: relative;
+    }
+
+    .p4-mesh line {
+      stroke: rgba(72, 116, 255, 0.12);
+      stroke-width: 1;
+    }
+
+    .p4-mesh circle.node {
+      fill: rgba(255, 255, 255, 0.08);
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 0.5;
+    }
+
+    .p4-mesh circle.node-active {
+      fill: #4874FF;
+      filter: drop-shadow(0 0 6px rgba(72, 116, 255, 0.5));
+    }
+
+    .p4-mesh circle.pulse {
+      fill: none;
+      stroke: rgba(72, 116, 255, 0.3);
+      stroke-width: 0.5;
+      animation: meshPulse 2s ease-out infinite;
+    }
+
+    @keyframes meshPulse {
+      0% { r: 8; opacity: 1; }
+      100% { r: 24; opacity: 0; }
+    }
+
+    /* P4 security grid */
+    .p4-sec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .p4-sec-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.5px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      animation: floatUpSlow 4s ease-in-out infinite;
+    }
+
+    .p4-sec-item:nth-child(1) { animation-delay: 0s; }
+    .p4-sec-item:nth-child(2) { animation-delay: 0.4s; }
+    .p4-sec-item:nth-child(3) { animation-delay: 0.8s; }
+    .p4-sec-item:nth-child(4) { animation-delay: 1.2s; }
+
+    .p4-sec-icon {
+      width: 28px; height: 28px;
+      margin: 0 auto 8px;
+      border-radius: 8px;
+      background: rgba(72, 116, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p4-sec-icon svg { width: 14px; height: 14px; color: #4874FF; }
+
+    .p4-sec-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: -0.1px;
     }
 
     .section-cta {
@@ -2885,76 +3780,430 @@
     </div>
   </section>
 
-  <!-- ========== SECTION 3: ONE PLATFORM ========== -->
-  <section class="section section-pillars">
+  <!-- ========== CONCEPT P1: ANIMATED ICON CARDS (3+2 GRID) ========== -->
+  <div class="concept-label">Concept P1 — Animated Icon Cards</div>
+  <section class="section section-p1">
     <div class="section-header">
       <span class="section-label">Why Recall</span>
       <h2 class="section-headline">One platform. Every advantage.</h2>
       <p class="section-sub">Recall gives every employee power-user-level AI productivity — managed, secure, and connected to your world.</p>
     </div>
-
-    <div class="pillars-grid">
-      <div class="pillar-card">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="3"/>
-            <path d="M9 3v18M3 9h18"/>
-          </svg>
+    <div class="p1-grid">
+      <!-- One Framework -->
+      <div class="p1-card">
+        <div class="p1-card-visual">
+          <div class="p1-hub">
+            <div class="p1-hub-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
+            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg></div>
+            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+            <div class="p1-spoke"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          </div>
         </div>
-        <div class="pillar-title">One Framework</div>
-        <p class="pillar-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p>
+        <div class="p1-card-text">
+          <div class="p1-card-title">One Framework</div>
+          <p class="p1-card-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p>
+        </div>
       </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
+      <!-- Model Fluidity -->
+      <div class="p1-card">
+        <div class="p1-card-visual">
+          <div class="p1-layers">
+            <div class="p1-layer">Claude 3.5 <span class="p1-layer-swap">&#8644;</span></div>
+            <div class="p1-layer">GPT-4o <span class="p1-layer-swap">&#8644;</span></div>
+            <div class="p1-layer">Private LLM <span class="p1-layer-swap">&#8644;</span></div>
+          </div>
         </div>
-        <div class="pillar-title">Model Fluidity</div>
-        <p class="pillar-copy">Use whatever models you want. Different models for different teams, tasks, or sensitivity levels.</p>
+        <div class="p1-card-text">
+          <div class="p1-card-title">Model Fluidity</div>
+          <p class="p1-card-copy">Use whatever models you want. Different models for different teams, tasks, or sensitivity levels.</p>
+        </div>
       </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <circle cx="12" cy="12" r="5"/>
-            <circle cx="12" cy="12" r="1"/>
-          </svg>
+      <!-- Memory -->
+      <div class="p1-card">
+        <div class="p1-card-visual">
+          <div class="p1-memory">
+            <div class="p1-mem-ring r1"></div>
+            <div class="p1-mem-ring r2"></div>
+            <div class="p1-mem-ring r3"></div>
+            <div class="p1-mem-core"></div>
+          </div>
         </div>
-        <div class="pillar-title">Memory</div>
-        <p class="pillar-copy">AI that remembers at the organizational, team, and individual level. Gets smarter the more your people use it.</p>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12h4m8 0h4"/>
-            <rect x="8" y="6" width="8" height="12" rx="2"/>
-            <path d="M2 8v8M22 8v8"/>
-          </svg>
+        <div class="p1-card-text">
+          <div class="p1-card-title">Memory</div>
+          <p class="p1-card-copy">AI that remembers at the organizational, team, and individual level. Gets smarter the more your people use it.</p>
         </div>
-        <div class="pillar-title">System Connectivity</div>
-        <p class="pillar-copy">Connects to any system, legacy or modern. AS/400, COBOL mainframes, modern APIs — all through one connector layer.</p>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0110 0v4"/>
-            <circle cx="12" cy="16" r="1"/>
-          </svg>
-        </div>
-        <div class="pillar-title">Security & Compliance</div>
-        <p class="pillar-copy">Enterprise-grade from day one. SOC 2, data governance, audit trails. Built in, not bolted on.</p>
       </div>
     </div>
-
+    <div class="p1-row-bottom">
+      <!-- System Connectivity -->
+      <div class="p1-card">
+        <div class="p1-card-visual">
+          <div class="p1-connect">
+            <div class="p1-plug">API</div>
+            <div class="p1-connect-line"></div>
+            <div class="p1-plug">SQL</div>
+            <div class="p1-connect-line"></div>
+            <div class="p1-plug-hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg></div>
+            <div class="p1-connect-line"></div>
+            <div class="p1-plug">S3</div>
+            <div class="p1-connect-line"></div>
+            <div class="p1-plug">ERP</div>
+          </div>
+        </div>
+        <div class="p1-card-text">
+          <div class="p1-card-title">System Connectivity</div>
+          <p class="p1-card-copy">Connects to any system, legacy or modern. AS/400, COBOL mainframes, modern APIs — all through one connector layer.</p>
+        </div>
+      </div>
+      <!-- Security -->
+      <div class="p1-card">
+        <div class="p1-card-visual">
+          <div class="p1-security">
+            <div class="p1-sec-tag">SOC 2</div>
+            <div class="p1-sec-tag">RBAC</div>
+            <div class="p1-shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="p1-sec-tag">Audit</div>
+            <div class="p1-sec-tag">DLP</div>
+          </div>
+        </div>
+        <div class="p1-card-text">
+          <div class="p1-card-title">Security & Compliance</div>
+          <p class="p1-card-copy">Enterprise-grade from day one. SOC 2, data governance, audit trails. Built in, not bolted on.</p>
+        </div>
+      </div>
+    </div>
     <div class="section-cta">
-      <a href="#" class="btn-primary">
-        <img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">
-        Get a Demo
-      </a>
+      <a href="#" class="btn-primary"><img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">Get a Demo</a>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT P2: HORIZONTAL SCROLL FEATURE STRIP ========== -->
+  <div class="concept-label">Concept P2 — Horizontal Scroll Strip</div>
+  <section class="section section-p2">
+    <div class="section-header">
+      <span class="section-label">Why Recall</span>
+      <h2 class="section-headline">One platform. Every advantage.</h2>
+      <p class="section-sub">Recall gives every employee power-user-level AI productivity — managed, secure, and connected to your world.</p>
+    </div>
+    <div class="p2-strip">
+      <!-- 1: Framework -->
+      <div class="p2-feature">
+        <div class="p2-feature-visual">
+          <div class="p2-framework-visual">
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="4"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
+            <div class="p2-fw-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg></div>
+          </div>
+        </div>
+        <div class="p2-feature-text">
+          <div class="p2-feature-num">01</div>
+          <div class="p2-feature-title">One Framework</div>
+          <p class="p2-feature-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p>
+        </div>
+      </div>
+      <!-- 2: Model Fluidity -->
+      <div class="p2-feature">
+        <div class="p2-feature-visual">
+          <div class="p2-model-carousel">
+            <div class="p2-model-slot">
+              <div class="p2-model-dot"></div>
+              <div class="p2-model-info"><span class="p2-model-name">Claude 3.5</span><span class="p2-model-dept">Engineering</span></div>
+              <span class="p2-model-swap">SWAP</span>
+            </div>
+            <div class="p2-model-slot">
+              <div class="p2-model-dot"></div>
+              <div class="p2-model-info"><span class="p2-model-name">GPT-4o</span><span class="p2-model-dept">Sales</span></div>
+              <span class="p2-model-swap">SWAP</span>
+            </div>
+            <div class="p2-model-slot">
+              <div class="p2-model-dot"></div>
+              <div class="p2-model-info"><span class="p2-model-name">Private LLM</span><span class="p2-model-dept">Legal</span></div>
+              <span class="p2-model-swap">SWAP</span>
+            </div>
+          </div>
+        </div>
+        <div class="p2-feature-text">
+          <div class="p2-feature-num">02</div>
+          <div class="p2-feature-title">Model Fluidity</div>
+          <p class="p2-feature-copy">Use whatever models you want. Different models for different teams, tasks, or sensitivity levels.</p>
+        </div>
+      </div>
+      <!-- 3: Memory -->
+      <div class="p2-feature">
+        <div class="p2-feature-visual">
+          <svg class="p2-wave-container" viewBox="0 0 200 160">
+            <path class="p2-wave-line w1" d="M0 100 Q50 60 100 100 T200 100">
+              <animate attributeName="d" values="M0 100 Q50 60 100 100 T200 100;M0 100 Q50 140 100 100 T200 100;M0 100 Q50 60 100 100 T200 100" dur="4s" repeatCount="indefinite"/>
+            </path>
+            <path class="p2-wave-line w2" d="M0 80 Q50 50 100 80 T200 80">
+              <animate attributeName="d" values="M0 80 Q50 50 100 80 T200 80;M0 80 Q50 110 100 80 T200 80;M0 80 Q50 50 100 80 T200 80" dur="3.5s" repeatCount="indefinite"/>
+            </path>
+            <path class="p2-wave-line w3" d="M0 60 Q50 30 100 60 T200 60">
+              <animate attributeName="d" values="M0 60 Q50 30 100 60 T200 60;M0 60 Q50 90 100 60 T200 60;M0 60 Q50 30 100 60 T200 60" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <circle class="p2-wave-dot" cx="100" cy="60" r="4">
+              <animate attributeName="cy" values="60;90;60" dur="3s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <div class="p2-feature-text">
+          <div class="p2-feature-num">03</div>
+          <div class="p2-feature-title">Memory</div>
+          <p class="p2-feature-copy">AI that remembers at the organizational, team, and individual level. Gets smarter the more your people use it.</p>
+        </div>
+      </div>
+      <!-- 4: Connectivity -->
+      <div class="p2-feature">
+        <div class="p2-feature-visual">
+          <div class="p2-nodes">
+            <div class="p2-node">API</div>
+            <div class="p2-node">SQL</div>
+            <div class="p2-node">ERP</div>
+            <div class="p2-node">S3</div>
+            <div class="p2-node center">R</div>
+            <svg style="position:absolute;inset:0;pointer-events:none" viewBox="0 0 180 160">
+              <line x1="90" y1="18" x2="90" y2="58" stroke="rgba(72,116,255,0.15)" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="162" y1="80" x2="112" y2="80" stroke="rgba(72,116,255,0.15)" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="90" y1="142" x2="90" y2="102" stroke="rgba(72,116,255,0.15)" stroke-width="1" stroke-dasharray="3 2"/>
+              <line x1="18" y1="80" x2="68" y2="80" stroke="rgba(72,116,255,0.15)" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="p2-feature-text">
+          <div class="p2-feature-num">04</div>
+          <div class="p2-feature-title">System Connectivity</div>
+          <p class="p2-feature-copy">Connects to any system, legacy or modern. AS/400, COBOL mainframes, modern APIs — all through one connector layer.</p>
+        </div>
+      </div>
+      <!-- 5: Security -->
+      <div class="p2-feature">
+        <div class="p2-feature-visual">
+          <div class="p2-scan">
+            <div class="p2-scan-ring"></div>
+            <div class="p2-scan-sweep"></div>
+            <div class="p2-scan-center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="p2-scan-blip"></div>
+            <div class="p2-scan-blip"></div>
+            <div class="p2-scan-blip"></div>
+          </div>
+        </div>
+        <div class="p2-feature-text">
+          <div class="p2-feature-num">05</div>
+          <div class="p2-feature-title">Security & Compliance</div>
+          <p class="p2-feature-copy">Enterprise-grade from day one. SOC 2, data governance, audit trails. Built in, not bolted on.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="#" class="btn-primary"><img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">Get a Demo</a>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT P3: ACCORDION + LIVE PREVIEW ========== -->
+  <div class="concept-label">Concept P3 — Accordion with Live Previews</div>
+  <section class="section section-p3">
+    <div class="section-header">
+      <span class="section-label">Why Recall</span>
+      <h2 class="section-headline">One platform. Every advantage.</h2>
+      <p class="section-sub">Recall gives every employee power-user-level AI productivity — managed, secure, and connected to your world.</p>
+    </div>
+    <div class="p3-container">
+      <div class="p3-accordion" id="p3Accordion">
+        <div class="p3-item active" data-panel="0">
+          <div class="p3-item-header">
+            <div class="p3-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
+            <span class="p3-item-label">One Framework</span>
+            <svg class="p3-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="p3-item-body"><p class="p3-item-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p></div>
+        </div>
+        <div class="p3-item" data-panel="1">
+          <div class="p3-item-header">
+            <div class="p3-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <span class="p3-item-label">Model Fluidity</span>
+            <svg class="p3-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="p3-item-body"><p class="p3-item-copy">Use whatever models you want. Different models for different teams, tasks, or sensitivity levels.</p></div>
+        </div>
+        <div class="p3-item" data-panel="2">
+          <div class="p3-item-header">
+            <div class="p3-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+            <span class="p3-item-label">Memory</span>
+            <svg class="p3-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="p3-item-body"><p class="p3-item-copy">AI that remembers at the organizational, team, and individual level. Gets smarter the more your people use it.</p></div>
+        </div>
+        <div class="p3-item" data-panel="3">
+          <div class="p3-item-header">
+            <div class="p3-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4m8 0h4"/><rect x="8" y="6" width="8" height="12" rx="2"/><path d="M2 8v8M22 8v8"/></svg></div>
+            <span class="p3-item-label">System Connectivity</span>
+            <svg class="p3-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="p3-item-body"><p class="p3-item-copy">Connects to any system, legacy or modern. AS/400, COBOL mainframes, modern APIs — all through one connector layer.</p></div>
+        </div>
+        <div class="p3-item" data-panel="4">
+          <div class="p3-item-header">
+            <div class="p3-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <span class="p3-item-label">Security & Compliance</span>
+            <svg class="p3-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="p3-item-body"><p class="p3-item-copy">Enterprise-grade from day one. SOC 2, data governance, audit trails. Built in, not bolted on.</p></div>
+        </div>
+      </div>
+      <div class="p3-preview" id="p3Preview">
+        <!-- Framework preview -->
+        <div class="p3-preview-panel active" data-panel="0">
+          <div class="p1-hub" style="width:200px;height:200px">
+            <div class="p1-hub-center" style="width:60px;height:60px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></div>
+            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4m0 12v4"/></svg></div>
+            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+            <div class="p1-spoke" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5"/><circle cx="9" cy="7" r="4"/></svg></div>
+          </div>
+        </div>
+        <!-- Fluidity preview -->
+        <div class="p3-preview-panel" data-panel="1">
+          <div class="p1-layers" style="width:200px">
+            <div class="p1-layer" style="height:44px;border-radius:12px;font-size:13px">Claude 3.5 <span class="p1-layer-swap">&#8644;</span></div>
+            <div class="p1-layer" style="height:44px;border-radius:12px;font-size:13px">GPT-4o <span class="p1-layer-swap">&#8644;</span></div>
+            <div class="p1-layer" style="height:44px;border-radius:12px;font-size:13px">Private LLM <span class="p1-layer-swap">&#8644;</span></div>
+          </div>
+        </div>
+        <!-- Memory preview -->
+        <div class="p3-preview-panel" data-panel="2">
+          <div class="p1-memory" style="width:200px;height:200px">
+            <div class="p1-mem-ring r1" style="width:200px;height:200px"></div>
+            <div class="p1-mem-ring r2" style="width:140px;height:140px"></div>
+            <div class="p1-mem-ring r3" style="width:80px;height:80px"></div>
+            <div class="p1-mem-core" style="width:36px;height:36px"></div>
+          </div>
+        </div>
+        <!-- Connectivity preview -->
+        <div class="p3-preview-panel" data-panel="3">
+          <div class="p2-nodes" style="width:220px;height:200px">
+            <div class="p2-node">API</div><div class="p2-node">SQL</div><div class="p2-node">ERP</div><div class="p2-node">S3</div>
+            <div class="p2-node center">R</div>
+          </div>
+        </div>
+        <!-- Security preview -->
+        <div class="p3-preview-panel" data-panel="4">
+          <div class="p2-scan" style="width:200px;height:200px">
+            <div class="p2-scan-ring"></div>
+            <div class="p2-scan-sweep"></div>
+            <div class="p2-scan-center" style="width:72px;height:72px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="p2-scan-blip"></div><div class="p2-scan-blip"></div><div class="p2-scan-blip"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="#" class="btn-primary"><img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">Get a Demo</a>
+    </div>
+  </section>
+
+  <!-- ========== CONCEPT P4: DARK FEATURE SHOWCASE ========== -->
+  <div class="concept-label">Concept P4 — Dark Feature Showcase</div>
+  <section class="section section-p4">
+    <div class="section-header">
+      <span class="section-label">Why Recall</span>
+      <h2 class="section-headline">One platform. Every advantage.</h2>
+      <p class="section-sub">Recall gives every employee power-user-level AI productivity — managed, secure, and connected to your world.</p>
+    </div>
+    <div class="p4-features">
+      <!-- 1: Framework -->
+      <div class="p4-feature">
+        <div class="p4-feature-text">
+          <div class="p4-feature-num">01 — FRAMEWORK</div>
+          <div class="p4-feature-title">One Framework</div>
+          <p class="p4-feature-copy">One place to manage all AI — models, data, users, connectors. No more stitching together point solutions.</p>
+        </div>
+        <div class="p4-feature-visual">
+          <div class="p4-dark-hub">
+            <div class="p4-dark-orbit">
+              <div class="p4-dark-node">AI</div>
+              <div class="p4-dark-node">DB</div>
+              <div class="p4-dark-node">API</div>
+              <div class="p4-dark-node">USR</div>
+            </div>
+            <div class="p4-dark-center"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 2: Fluidity -->
+      <div class="p4-feature">
+        <div class="p4-feature-text">
+          <div class="p4-feature-num">02 — FLUIDITY</div>
+          <div class="p4-feature-title">Model Fluidity</div>
+          <p class="p4-feature-copy">Use whatever models you want. Different models for different teams, tasks, or sensitivity levels.</p>
+        </div>
+        <div class="p4-feature-visual">
+          <div class="p4-bars">
+            <div class="p4-bar"><span class="p4-bar-label">Claude</span><div class="p4-bar-track"><div class="p4-bar-fill"></div></div></div>
+            <div class="p4-bar"><span class="p4-bar-label">GPT-4</span><div class="p4-bar-track"><div class="p4-bar-fill"></div></div></div>
+            <div class="p4-bar"><span class="p4-bar-label">Private</span><div class="p4-bar-track"><div class="p4-bar-fill"></div></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- 3: Memory -->
+      <div class="p4-feature">
+        <div class="p4-feature-text">
+          <div class="p4-feature-num">03 — MEMORY</div>
+          <div class="p4-feature-title">Memory</div>
+          <p class="p4-feature-copy">AI that remembers at the organizational, team, and individual level. Gets smarter the more your people use it.</p>
+        </div>
+        <div class="p4-feature-visual">
+          <div class="p4-dark-memory">
+            <div class="p4-mem-ring-dark r1"></div>
+            <div class="p4-mem-ring-dark r2"></div>
+            <div class="p4-mem-core-dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <!-- 4: Connectivity -->
+      <div class="p4-feature">
+        <div class="p4-feature-text">
+          <div class="p4-feature-num">04 — CONNECTIVITY</div>
+          <div class="p4-feature-title">System Connectivity</div>
+          <p class="p4-feature-copy">Connects to any system, legacy or modern. AS/400, COBOL mainframes, modern APIs — all through one connector layer.</p>
+        </div>
+        <div class="p4-feature-visual">
+          <svg class="p4-mesh" viewBox="0 0 200 160">
+            <line x1="30" y1="30" x2="100" y2="80"/><line x1="170" y1="30" x2="100" y2="80"/>
+            <line x1="30" y1="130" x2="100" y2="80"/><line x1="170" y1="130" x2="100" y2="80"/>
+            <line x1="30" y1="30" x2="170" y2="30"/><line x1="30" y1="130" x2="170" y2="130"/>
+            <circle class="node" cx="30" cy="30" r="8"/><circle class="node" cx="170" cy="30" r="8"/>
+            <circle class="node" cx="30" cy="130" r="8"/><circle class="node" cx="170" cy="130" r="8"/>
+            <circle class="node-active" cx="100" cy="80" r="10"/>
+            <circle class="pulse" cx="100" cy="80" r="10"/>
+          </svg>
+        </div>
+      </div>
+      <!-- 5: Security -->
+      <div class="p4-feature">
+        <div class="p4-feature-text">
+          <div class="p4-feature-num">05 — SECURITY</div>
+          <div class="p4-feature-title">Security & Compliance</div>
+          <p class="p4-feature-copy">Enterprise-grade from day one. SOC 2, data governance, audit trails. Built in, not bolted on.</p>
+        </div>
+        <div class="p4-feature-visual">
+          <div class="p4-sec-grid">
+            <div class="p4-sec-item"><div class="p4-sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="p4-sec-label">SOC 2</div></div>
+            <div class="p4-sec-item"><div class="p4-sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="p4-sec-label">RBAC</div></div>
+            <div class="p4-sec-item"><div class="p4-sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="p4-sec-label">Audit Trail</div></div>
+            <div class="p4-sec-item"><div class="p4-sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="p4-sec-label">Data Gov</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta" style="margin-top:48px">
+      <a href="#" class="btn-primary"><img class="btn-primary-icon" src="https://www.figma.com/api/mcp/asset/e3e49b52-b45b-41a2-b972-6eb9b3247be6" alt="">Get a Demo</a>
     </div>
   </section>
 
@@ -3404,6 +4653,23 @@
   tabs.forEach(t => t.addEventListener('click', () => {
     setActive(parseInt(t.dataset.index));
   }));
+})();
+</script>
+
+<!-- Concept P3: Accordion JS -->
+<script>
+(function() {
+  const items = document.querySelectorAll('#p3Accordion .p3-item');
+  const panels = document.querySelectorAll('#p3Preview .p3-preview-panel');
+  if (!items.length) return;
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = item.dataset.panel;
+      items.forEach(i => i.classList.toggle('active', i === item));
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === idx));
+    });
+  });
 })();
 </script>
 
